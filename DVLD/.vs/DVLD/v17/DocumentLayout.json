@@ -3,14 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDBAA85D-6CB0-4FCA-ADC0-8C432296F436}|..\\DVLD_DataAccessLayer\\DVLD_DataAccessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_dataaccesslayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5168AD0-0EBC-46E6-8E69-1B9E5A33CA40}|..\\DVLD_BusinessLayer\\DVLD_BusinessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_businesslayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5168AD0-0EBC-46E6-8E69-1B9E5A33CA40}|..\\DVLD_BusinessLayer\\DVLD_BusinessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_businesslayer\\clsperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDBAA85D-6CB0-4FCA-ADC0-8C432296F436}|..\\DVLD_DataAccessLayer\\DVLD_DataAccessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_dataaccesslayer\\clspeopledataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,7 +32,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -32,41 +44,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\Class1.cs",
-              "RelativeDocumentMoniker": "..\\DVLD_DataAccessLayer\\Class1.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\Class1.cs",
-              "RelativeToolTip": "..\\DVLD_DataAccessLayer\\Class1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T16:22:34.373Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\Class1.cs",
-              "RelativeDocumentMoniker": "..\\DVLD_BusinessLayer\\Class1.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\Class1.cs",
-              "RelativeToolTip": "..\\DVLD_BusinessLayer\\Class1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T16:21:25.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T11:37:21.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T16:19:40.373Z",
+              "WhenOpened": "2024-10-22T11:35:46.503Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T11:35:13.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Properties\\Resources.resx",
+              "RelativeDocumentMoniker": "Properties\\Resources.resx",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Properties\\Resources.resx",
+              "RelativeToolTip": "Properties\\Resources.resx",
+              "ViewState": "AQIAAFcAAAAAAAAAAADgv3gAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-10-22T11:34:02.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "clsPeopleDataAccess.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsPeopleDataAccess.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_DataAccessLayer\\clsPeopleDataAccess.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsPeopleDataAccess.cs",
+              "RelativeToolTip": "..\\DVLD_DataAccessLayer\\clsPeopleDataAccess.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4BAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T21:12:58.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "clsPerson.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsPerson.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_BusinessLayer\\clsPerson.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsPerson.cs",
+              "RelativeToolTip": "..\\DVLD_BusinessLayer\\clsPerson.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJ4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T18:11:52.172Z",
+              "EditorCaption": ""
             }
           ]
         }
