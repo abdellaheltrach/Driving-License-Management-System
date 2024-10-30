@@ -77,7 +77,7 @@ namespace DVLD_BusinessLayer
             this.Email = Email;
             this.NationalityCountryID = NationalityCountryID;
             this.ImagePath = ImagePath;
-            this.CountryInfo = clsCountry.FindByID(NationalityCountryID);
+            this.CountryInfo = clsCountry.Find(NationalityCountryID);
             Mode = enMode.Update;
         }
 
@@ -123,6 +123,28 @@ namespace DVLD_BusinessLayer
 
             if (IsFound)
                 //we return new object of that person with the right data
+                return new clsPerson(PersonID, FirstName, SecondName, ThirdName, LastName,
+                          NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+            else
+                return null;
+        }
+        public static clsPerson Find(string NationalNo)
+        {
+            string FirstName = "", SecondName = "", ThirdName = "", LastName = "", Email = "", Phone = "", Address = "", ImagePath = "";
+            DateTime DateOfBirth = DateTime.Now;
+            int PersonID = -1, NationalityCountryID = -1;
+            short Gendor = 0;
+
+            bool IsFound = clsPeopleDataAccess.GetPersonInfoByNationalNo
+                                (
+                                    NationalNo, ref PersonID, ref FirstName, ref SecondName,
+                                    ref ThirdName, ref LastName, ref DateOfBirth,
+                                    ref Gendor, ref Address, ref Phone, ref Email,
+                                    ref NationalityCountryID, ref ImagePath
+                                );
+
+            if (IsFound)
+
                 return new clsPerson(PersonID, FirstName, SecondName, ThirdName, LastName,
                           NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
             else

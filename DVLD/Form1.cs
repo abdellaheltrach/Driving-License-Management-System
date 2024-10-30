@@ -21,5 +21,18 @@ namespace DVLD
         {
 
         }
+
+
+        PeopleForm peopleForm = new PeopleForm();
+        private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (peopleForm == null || peopleForm.IsDisposed)  // إذا تم إغلاقه، يتم إنشاء نموذج جديد
+            {
+                 peopleForm = new PeopleForm();
+            }
+
+            peopleForm.Owner = this;
+            peopleForm.Show();
+        }
     }
 }

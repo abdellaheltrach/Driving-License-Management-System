@@ -21,18 +21,18 @@ namespace DVLD_BusinessLayer
 
         public clsCountry(string CountryName)
         {
-            this.CountryID = FindByName(CountryName).CountryID;
+            this.CountryID = Find(CountryName).CountryID;
             this.CountryName = CountryName;
         }
 
         public clsCountry(int CountryID)
         {
             this.CountryID = CountryID;
-            this.CountryName = FindByID(CountryID).CountryName;
+            this.CountryName = Find(CountryID).CountryName;
         }
 
 
-        public static clsCountry FindByID(int ID)
+        public static clsCountry Find(int ID)
         {
 
             string CountryName = "";
@@ -47,7 +47,7 @@ namespace DVLD_BusinessLayer
 
         }
 
-        public static clsCountry FindByName(string CountryName)
+        public static clsCountry Find(string CountryName)
         {
 
             int ID = -1;
