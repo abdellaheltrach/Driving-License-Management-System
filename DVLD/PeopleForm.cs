@@ -20,6 +20,66 @@ namespace DVLD
         {
             InitializeComponent();
         }
+        private void _PreformeFiltring()
+        {
+            string FilterColumn = FilterComboBox.SelectedItem.ToString();
+            string FilterText = tbfilterBy.Text.Trim();
+            string actualColumnName = ""; // To hold the actual column name for filtering
+
+            // Cast user-friendly names to actual column names
+            if (FilterColumn == "PersonID")
+                actualColumnName = "PersonID";
+            else if (FilterColumn == "National No.")
+                actualColumnName = "NationalNo";
+            else if (FilterColumn == "First Name")
+                actualColumnName = "FirstName";
+            else if (FilterColumn == "Second Name")
+                actualColumnName = "SecondName";
+            else if (FilterColumn == "Third Name")
+                actualColumnName = "ThirdName";
+            else if (FilterColumn == "Last Name")
+                actualColumnName = "LastName";
+            else if (FilterColumn == "Gendor")
+                actualColumnName = "Gendor"; // Note: Keep "Gendor" if that's the exact column name
+            else if (FilterColumn == "Date Of Birth")
+                actualColumnName = "DateOfBirth";
+            else if (FilterColumn == "Nationality")
+                actualColumnName = "CountryName";
+            else if (FilterColumn == "Phone")
+                actualColumnName = "Phone";
+            else if (FilterColumn == "Email")
+                actualColumnName = "Email";
+
+            if (string.IsNullOrWhiteSpace(tbfilterBy.Text.Trim()))
+            {
+                _dtPeople.DefaultView.RowFilter = "";
+                lblCountRecords.Text = dgvPeopleData.Rows.Count.ToString();
+                return;
+            }
+
+            if (actualColumnName == "PersonID")
+                // Integer filter for PersonID
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", actualColumnName, FilterText);
+            else
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", actualColumnName, FilterText);
+
+            lblCountRecords.Text = dgvPeopleData.Rows.Count.ToString();
+        }
+        private void _ReloadPersonList()
+        {
+            _PersonsTable = clsPerson.GetAllPeople();
+            _dtPeople = _PersonsTable.DefaultView.ToTable(false, "PersonID", "NationalNo",
+                                                                        "FirstName", "SecondName", "ThirdName",
+                                                                        "LastName", "Gendor", "DateOfBirth",
+                                                                        "CountryName", "Phone", "Email");
+
+
+
+            dgvPeopleData.DataSource = _dtPeople;
+            lblCountRecords.Text = _dtPeople.Rows.Count.ToString();
+
+
+        }
 
         private void PeopleForm_Load(object sender, EventArgs e)
         {
@@ -83,51 +143,6 @@ namespace DVLD
             dgvPeopleData.Columns[10].Width = 170;
         }
 
-        private void _PreformeFiltring()
-        {
-            string FilterColumn = FilterComboBox.SelectedItem.ToString();
-            string FilterText = tbfilterBy.Text.Trim();
-            string actualColumnName = ""; // To hold the actual column name for filtering
-
-            // Cast user-friendly names to actual column names
-            if (FilterColumn == "PersonID")
-                actualColumnName = "PersonID";
-            else if (FilterColumn == "National No.")
-                actualColumnName = "NationalNo";
-            else if (FilterColumn == "First Name")
-                actualColumnName = "FirstName";
-            else if (FilterColumn == "Second Name")
-                actualColumnName = "SecondName";
-            else if (FilterColumn == "Third Name")
-                actualColumnName = "ThirdName";
-            else if (FilterColumn == "Last Name")
-                actualColumnName = "LastName";
-            else if (FilterColumn == "Gendor")
-                actualColumnName = "Gendor"; // Note: Keep "Gendor" if that's the exact column name
-            else if (FilterColumn == "Date Of Birth")
-                actualColumnName = "DateOfBirth";
-            else if (FilterColumn == "Nationality")
-                actualColumnName = "CountryName";
-            else if (FilterColumn == "Phone")
-                actualColumnName = "Phone";
-            else if (FilterColumn == "Email")
-                actualColumnName = "Email";
-
-            if (string.IsNullOrWhiteSpace(tbfilterBy.Text.Trim()))
-            {
-                _dtPeople.DefaultView.RowFilter = "";
-                lblCountRecords.Text = dgvPeopleData.Rows.Count.ToString();
-                return;
-            }
-
-            if (actualColumnName == "PersonID")
-                // Integer filter for PersonID
-                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", actualColumnName, FilterText);
-            else
-                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", actualColumnName, FilterText);
-
-            lblCountRecords.Text = dgvPeopleData.Rows.Count.ToString();
-        }
 
 
         private void tbfilterBy_TextChanged(object sender, EventArgs e)
@@ -146,6 +161,73 @@ namespace DVLD
                 }
             }
   
+        }
+
+        private void AddPersonButton_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdatePerson Person = new frmAddOrUpdatePerson();
+            Person.ShowDialog();
+            _ReloadPersonList();
+        }
+
+        private void showDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPersonDetail personDetail = new frmPersonDetail((int)dgvPeopleData.CurrentRow.Cells[0].Value);
+            personDetail.ShowDialog();
+            _ReloadPersonList();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdatePerson person = new frmAddOrUpdatePerson((int)dgvPeopleData.CurrentRow.Cells[0].Value);
+            person.ShowDialog();
+            _ReloadPersonList();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete Person [" + dgvPeopleData.CurrentRow.Cells[0].Value + "]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+
+            {
+
+                //Perform Delele and refresh
+                if (clsPerson.DeletePerson((int)dgvPeopleData.CurrentRow.Cells[0].Value))
+                {
+                    MessageBox.Show("Person Deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _ReloadPersonList();
+                }
+
+                else
+                    MessageBox.Show("Person was not deleted because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+        }
+
+        private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
+
+        }
+
+        private void dgvPeopleData_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmPersonDetail personDetail = new frmPersonDetail((int)dgvPeopleData.CurrentRow.Cells[0].Value);
+            personDetail.ShowDialog();
+            _ReloadPersonList();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

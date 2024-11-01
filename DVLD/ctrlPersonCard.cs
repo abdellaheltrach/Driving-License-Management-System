@@ -19,6 +19,7 @@ namespace DVLD
         {
             InitializeComponent();
         }
+
         private clsPerson _Person;
 
         private int _PersonID = -1;
@@ -112,6 +113,11 @@ namespace DVLD
 
         }
 
-
+        private void llEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddOrUpdatePerson frmAddOrUpdatePerson = new frmAddOrUpdatePerson(_Person.PersonID);
+            frmAddOrUpdatePerson.ShowDialog();
+            LoadPersonInfo(_Person.PersonID);
+        }
     }
 }

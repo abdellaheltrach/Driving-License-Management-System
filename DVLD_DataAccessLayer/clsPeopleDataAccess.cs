@@ -13,7 +13,7 @@ namespace DVLD_DataAccessLayer
     public class clsPeopleDataAccess
     {
         public static bool GetPersonInfoByID(int PersonID, ref string NationalNo, ref string FirstName, ref string SecondName, ref string ThirdName,  ref string LastName,
-    ref DateTime DateOfBirth, ref short Gendor, ref string Address, ref string Phone, ref string Email,
+    ref DateTime DateOfBirth, ref byte Gendor, ref string Address, ref string Phone, ref string Email,
      ref int NationalityCountryID, ref string ImagePath)
         {
             bool isFound = false;
@@ -44,11 +44,11 @@ namespace DVLD_DataAccessLayer
                     ThirdName = (string)reader["ThirdName"];
                     LastName = (string)reader["LastName"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    Gendor = (short)reader["Gendor"];
+                    Gendor = (byte)reader["Gendor"];
                     Address = (string)reader["Address"];
                     Phone = (string)reader["Phone"];
                     Email = (string)reader["Email"];
-                    NationalityCountryID = (short)reader["NationalityCountryID"];
+                    NationalityCountryID = (int)reader["NationalityCountryID"];
 
                     //ImagePath: allows null in database so we should handle null
                     ImagePath = reader["ImagePath"] != DBNull.Value? reader["ImagePath"].ToString() : "";
@@ -67,7 +67,7 @@ namespace DVLD_DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -80,7 +80,7 @@ namespace DVLD_DataAccessLayer
 
         public static bool GetPersonInfoByNationalNo(string NationalNo, ref int PersonID, ref string FirstName, ref string SecondName,
 ref string ThirdName, ref string LastName, ref DateTime DateOfBirth,
- ref short Gendor, ref string Address, ref string Phone, ref string Email,
+ ref byte Gendor, ref string Address, ref string Phone, ref string Email,
  ref int NationalityCountryID, ref string ImagePath)
         {
             bool isFound = false;
