@@ -44,6 +44,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblLoginStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,6 +74,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.Controls.Add(this.lblLoginStatus);
             this.splitContainer1.Panel2.Controls.Add(this.btnClose);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.chkRememberMe);
@@ -160,6 +162,7 @@
             this.btnClose.Size = new System.Drawing.Size(66, 58);
             this.btnClose.TabIndex = 4;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label7
             // 
@@ -262,6 +265,19 @@
             this.pictureBox3.TabIndex = 132;
             this.pictureBox3.TabStop = false;
             // 
+            // lblLoginStatus
+            // 
+            this.lblLoginStatus.AutoSize = true;
+            this.lblLoginStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoginStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblLoginStatus.Location = new System.Drawing.Point(244, 212);
+            this.lblLoginStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblLoginStatus.Name = "lblLoginStatus";
+            this.lblLoginStatus.Size = new System.Drawing.Size(341, 25);
+            this.lblLoginStatus.TabIndex = 136;
+            this.lblLoginStatus.Text = "*Incorrect Username or Password!";
+            this.lblLoginStatus.Visible = false;
+            // 
             // FrmLoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -307,5 +323,6 @@
         private System.Windows.Forms.CheckBox chkRememberMe;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lblLoginStatus;
     }
 }
