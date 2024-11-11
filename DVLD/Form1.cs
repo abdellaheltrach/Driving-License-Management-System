@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,15 @@ namespace DVLD
 
             peopleForm.Owner = this;
             peopleForm.Show();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            // Close this form (main form)
+            this.Close();
+  
+
         }
     }
 }

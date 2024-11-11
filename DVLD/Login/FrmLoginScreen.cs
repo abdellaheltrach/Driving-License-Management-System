@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using System.IO;
+using DVLD.Users;
 
 namespace DVLD.Login
 {
@@ -74,10 +75,19 @@ namespace DVLD.Login
                 {
                     _SaveLoginDetails(username, password);
 
-                    Form1 frm = new Form1();
-                    this.Hide(); 
-                    frm.ShowDialog();  
-                    this.Close();
+                    clsCurrentUser.CurrentUser= clsUser.FindUserById(userId); // initials the currant user
+                   
+                    this.Hide(); // hiding the login form
+
+
+                    using (Form1 frm = new Form1())
+                    {
+                        frm.ShowDialog();
+                    }
+
+
+                    clsCurrentUser.CurrentUser = null; ; // reset the currant user
+                    this.Show();
                 }
                 else
                 {
