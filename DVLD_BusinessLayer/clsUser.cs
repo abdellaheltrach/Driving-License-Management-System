@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DVLD_DataAccessLayer;
+using System.Data;
 
 namespace DVLD_BusinessLayer
 {
@@ -60,6 +61,21 @@ namespace DVLD_BusinessLayer
 
         }
 
+        public static bool IsPasswordCorrect(int userId, string password)
+        {
+            return clsUserDataAccess.IsPasswordMatch( userId,  password);
+        }
 
+        public static bool ChangePassword(int userId, string newPassword)
+        {
+            return clsUserDataAccess.ChangePassword(userId, newPassword);
+        }
+
+        public static DataTable GetAllUsers()
+        {
+            return clsUserDataAccess.GetAllUsers();
+        }
+
+        
     }
 }

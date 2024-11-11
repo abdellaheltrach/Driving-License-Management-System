@@ -1,4 +1,5 @@
 ﻿using DVLD.Login;
+using DVLD.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,18 @@ namespace DVLD
             this.Close();
   
 
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInfo frmUserInfo = new frmUserInfo(clsCurrentUser.CurrentUser.UserID);
+            frmUserInfo.Show();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword(clsCurrentUser.CurrentUser.UserID);
+            frm.Show();
         }
     }
 }

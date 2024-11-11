@@ -18,3 +18,6 @@ C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.frmAddOrUpdatePerson.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.frmPersonDetail.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Login.FrmLoginScreen.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Users.ctrlUserCard.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Users.frmUserInfo.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Users.frmChangePassword.resources

@@ -11,7 +11,5 @@ namespace DVLD.Users
     {
         public static clsUser CurrentUser;
 
-
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,6 +89,99 @@ namespace DVLD_DataAccessLayer
             }
 
             return isFound; // Return whether the user was found or not
+        }
+
+        public static bool IsPasswordMatch(int userId, string password)
+        {
+            bool isMatch = false;
+
+            string query = "SELECT COUNT(1) FROM Users WHERE UserID = @UserID AND Password = @Password";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Use parameterized queries to prevent SQL injection
+                    command.Parameters.AddWithValue("@UserID", userId);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    try
+                    {
+                        connection.Open();
+                        int count = (int)command.ExecuteScalar();
+
+                        // Check if a match was found (count should be 1 if userId/password match)
+                        isMatch = count == 1;
+                    }
+                    catch (Exception ex)
+                    {
+          
+                    }
+                }
+            }
+
+            return isMatch;
+        }
+
+        public static bool ChangePassword(int userId, string newPassword)
+        {
+            bool isPasswordChanged = false;
+
+            string query = "UPDATE Users SET Password = @NewPassword WHERE UserID = @UserID";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Use parameterized queries to prevent SQL injection
+                    command.Parameters.AddWithValue("@UserID", userId);
+                    command.Parameters.AddWithValue("@NewPassword", newPassword);
+
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Check if a row was updated
+                        isPasswordChanged = rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions (e.g., log them)
+                        Console.WriteLine($"An error occurred: {ex.Message}");
+                    }
+                }
+            }
+
+            return isPasswordChanged;
+        }
+
+        public static DataTable GetAllUsers()
+        {
+            string query = "SELECT UserID, PersonID, UserName, Password, IsActive FROM Users";
+            DataTable usersTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(usersTable); // Fill the DataTable with query results
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log or handle the exception
+                        Console.WriteLine($"An error occurred: {ex.Message}");
+                    }
+                }
+            }
+
+            return usersTable;
         }
 
     }
