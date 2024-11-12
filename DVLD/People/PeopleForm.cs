@@ -20,6 +20,7 @@ namespace DVLD
         {
             InitializeComponent();
         }
+
         private void _PreformeFiltring()
         {
             string FilterColumn = FilterComboBox.SelectedItem.ToString();
@@ -65,6 +66,10 @@ namespace DVLD
 
             lblCountRecords.Text = dgvPeopleData.Rows.Count.ToString();
         }
+
+
+
+
         private void _ReloadPersonList()
         {
             _PersonsTable = clsPerson.GetAllPeople();

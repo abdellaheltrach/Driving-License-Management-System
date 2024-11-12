@@ -57,5 +57,12 @@ namespace DVLD
             frmChangePassword frm = new frmChangePassword(clsCurrentUser.CurrentUser.UserID);
             frm.Show();
         }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsersForm usersForm = new UsersForm();
+            usersForm.Owner = this;
+            usersForm.Show();
+        }
     }
 }

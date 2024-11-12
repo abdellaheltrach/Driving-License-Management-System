@@ -158,7 +158,19 @@ namespace DVLD_DataAccessLayer
 
         public static DataTable GetAllUsers()
         {
-            string query = "SELECT UserID, PersonID, UserName, Password, IsActive FROM Users";
+            // Updated query with concatenation for full name
+            string query = @"
+            SELECT 
+                Users.UserID, 
+                Users.PersonID, 
+                (People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName) AS FullName, 
+                Users.UserName, 
+                Users.IsActive
+            FROM     
+                People 
+            INNER JOIN
+                Users ON People.PersonID = Users.PersonID";
+
             DataTable usersTable = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -175,7 +187,7 @@ namespace DVLD_DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        // Log or handle the exception
+                        // Log the exception or handle it as needed
                         Console.WriteLine($"An error occurred: {ex.Message}");
                     }
                 }
