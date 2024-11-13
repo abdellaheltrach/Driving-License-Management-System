@@ -28,10 +28,10 @@ namespace DVLD_BusinessLayer
         }
 
          public static int VerifyUserCredentials(string username, string password)
-        {
+         {
  
             return clsUserDataAccess.VerifyUserCredentials(username, password);
-        }
+         }
 
 
 
@@ -76,6 +76,10 @@ namespace DVLD_BusinessLayer
             return clsUserDataAccess.GetAllUsers();
         }
 
-        
+        public static bool DeleteUser(int userId)
+        {
+            return clsUserDataAccess.DeleteUser(userId);
+        }
+
     }
 }

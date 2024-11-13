@@ -196,7 +196,38 @@ namespace DVLD_DataAccessLayer
             return usersTable;
         }
 
+        public static bool DeleteUser(int userId)
+        {
+            string query = "DELETE FROM Users WHERE UserID = @UserID";
+            bool isDeleted = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userId);
+
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        isDeleted = rowsAffected > 0; // True if deletion was successful
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception or handle it as needed
+                    }
+                }
+            }
+
+            return isDeleted;
+        }
+
+
+
     }
+
+
 
 
 }

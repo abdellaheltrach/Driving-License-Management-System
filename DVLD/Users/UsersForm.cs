@@ -104,101 +104,12 @@ namespace DVLD.Users
             // Update the record count label after filtering
             lblRecordsCount.Text = dgvUsers.RowCount.ToString();
         }
-        /*
-        private void _PreformeFiltring()
-        {
-            //case one empty filter text
 
-            if (txtFilterValue.Text==string.Empty)
-            {
-                _UsersTable.DefaultView.RowFilter = string.Empty;
-                lblRecordsCount.Text = dgvUsers.RowCount.ToString();
-                return;
-            }
-
-
-            string filterColumn = "";
-
-            if (cbFilterBy.SelectedIndex == 0)
-            {
-                // No filter selected; clear any existing filters
-                _UsersTable.DefaultView.RowFilter = string.Empty;
-                lblRecordsCount.Text = dgvUsers.RowCount.ToString();
-                return;
-            }
-            else if (cbFilterBy.SelectedIndex == 1)
-            {
-                filterColumn = "UserID";
-                if (int.TryParse(txtFilterValue.Text.Trim(), out int filteringNumber))
-                {
-                    // Apply filter for exact numeric match
-                    _UsersTable.DefaultView.RowFilter = $"{filterColumn} = {filteringNumber}";
-                }
-            }
-            else if (cbFilterBy.SelectedIndex == 3)
-            {
-                filterColumn = "PersonID";
-                if (int.TryParse(txtFilterValue.Text.Trim(), out int filteringNumber))
-                {
-                    // Apply filter for exact numeric match
-                    _UsersTable.DefaultView.RowFilter = $"{filterColumn} = {filteringNumber}";
-                }
-            }
-            else if (cbFilterBy.SelectedIndex == 2)
-            {
-
-                string filteringString = txtFilterValue.Text.Trim();
-
-                // Apply filter for partial text match using LIKE
-                _UsersTable.DefaultView.RowFilter = string.Format("UserName LIKE '{1}%'", filteringString);
-                lblRecordsCount.Text = dgvUsers.RowCount.ToString();
-                return;
-            }
-            else if (cbFilterBy.SelectedIndex == 4)
-            {
-
-                string filteringString = txtFilterValue.Text.Trim();
-
-                // Apply filter for partial text match using LIKE
-                _UsersTable.DefaultView.RowFilter = string.Format("FullName LIKE '{1}%'", filteringString);
-                lblRecordsCount.Text = dgvUsers.RowCount.ToString();
-                return;
-            }
-            else if (cbFilterBy.SelectedIndex == 5)
-            {
-
-                // Handle filtering based on the selected index
-                if (cbIsActive.SelectedIndex == 0) // "All"
-                {
-                    // No filter applied, show all records
-                    _UsersTable.DefaultView.RowFilter = string.Empty;
-                }
-                else if (cbIsActive.SelectedIndex == 1) // "Yes" (Active)
-                {
-                    // Filter for records where IsActive = true
-                    _UsersTable.DefaultView.RowFilter = "IsActive = true";
-                }
-                else if (cbIsActive.SelectedIndex == 2) // "No" (Inactive)
-                {
-                    // Filter for records where IsActive = false
-                    _UsersTable.DefaultView.RowFilter = "IsActive = false";
-                }
-
-                // Update the record count label after filtering
-                lblRecordsCount.Text = dgvUsers.RowCount.ToString();
-                return;
-            }
-
-
-        }
-        */
-
-
-        private void UsersForm_Load(object sender, EventArgs e)
+        private void _ReloadUserList()
         {
             dgvUsers.DataSource = _UsersTable;
-            lblRecordsCount.Text=dgvUsers.RowCount.ToString();
-            cbFilterBy.SelectedIndex= 0;
+            lblRecordsCount.Text = dgvUsers.RowCount.ToString();
+            cbFilterBy.SelectedIndex = 0;
 
 
             if (dgvUsers.Rows.Count > 0)
@@ -215,6 +126,14 @@ namespace DVLD.Users
             }
 
 
+
+
+        }
+
+
+        private void UsersForm_Load(object sender, EventArgs e)
+        {
+            _ReloadUserList();
         }
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,6 +191,54 @@ namespace DVLD.Users
         private void cbIsActive_SelectedIndexChanged(object sender, EventArgs e)
         {
             _PreformeFiltring();
+        }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInfo frm = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clsUser.DeleteUser((int)dgvUsers.CurrentRow.Cells[0].Value))
+            {
+                 // User deleted successfully
+                 MessageBox.Show("User deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ReloadUserList();
+
+            }
+            else
+            {
+                 // Cannot delete user because there is data linked to it
+                 MessageBox.Show("Cannot delete user because there is data linked to this user!",
+                                 "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword((int)dgvUsers.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+
+        }
+
+        private void sendEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void phoneCallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
         }
     }
 }

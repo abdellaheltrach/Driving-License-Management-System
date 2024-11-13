@@ -274,5 +274,8 @@
   <ItemGroup>
     <None Include="Resources\Add New User 721.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit User 32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
