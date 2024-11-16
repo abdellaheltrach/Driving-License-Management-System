@@ -10,6 +10,65 @@ namespace DVLD_DataAccessLayer
 {
     public class clsUserDataAccess
     {
+        public static int AddUser(int personId, string userName, string password, bool isActive)
+        {
+            string query = "INSERT INTO Users (PersonID, UserName, Password, IsActive) OUTPUT INSERTED.UserID VALUES (@PersonID, @UserName, @Password, @IsActive)";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PersonID", personId);
+                command.Parameters.AddWithValue("@UserName", userName);
+                command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@IsActive", isActive);
+
+                try
+                {
+                    connection.Open();
+                    // Get the newly inserted UserID
+                    int userId = (int)command.ExecuteScalar();
+                    return userId; // Return the newly created UserID
+                }
+                catch (Exception ex)
+                {
+                    // Handle error (optional: log or show message)
+                    return -1; // Return -1 to indicate failure
+                }
+            }
+        }
+
+        public static bool UpdateUser(int userId, string userName, string password, bool isActive)
+        {
+            // SQL query to update user details based on UserID
+            string query = "UPDATE Users SET UserName = @UserName, Password = @Password, IsActive = @IsActive WHERE UserID = @UserID";
+
+            // Create a connection and command
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userId);
+                command.Parameters.AddWithValue("@UserName", userName);
+                command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@IsActive", isActive);
+
+                try
+                {
+                    // Open connection and execute the command
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Return true if at least one row was updated
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle exception
+                    // throw new Exception("An error occurred while updating user: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
         public static int VerifyUserCredentials(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -32,7 +91,7 @@ namespace DVLD_DataAccessLayer
 
                 }
 
-                return  -1;
+                return -1;
             }
         }
 
@@ -115,7 +174,7 @@ namespace DVLD_DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-          
+
                     }
                 }
             }
@@ -223,12 +282,53 @@ namespace DVLD_DataAccessLayer
             return isDeleted;
         }
 
+        public static bool IsUserExistsById(int PersonId)
+        {
+            string query = "SELECT COUNT(1) FROM Users WHERE PersonID = @PersonID";
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@PersonID", PersonId);
 
+                try
+                {
+                    connection.Open();
+                    int result = Convert.ToInt32(command.ExecuteScalar()); // Execute the query and return 1 if exists, 0 if not
+                    return result > 0; // User exists if result is greater than 0
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle exception
+                    //throw new Exception("An error occurred while checking if user exists: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static bool IsUserExistsByUsername(string userName)
+        {
+            string query = "SELECT COUNT(1) FROM Users WHERE UserName = @UserName";
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserName", userName);
+
+                try
+                {
+                    connection.Open();
+                    int result = Convert.ToInt32(command.ExecuteScalar());
+                    return result > 0; // User exists if result is greater than 0
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle exception
+                    //throw new Exception("An error occurred while checking if user exists: " + ex.Message);
+                
+                    return false;
+                }
+            }
+        }
 
     }
-
-
-
 
 }
 

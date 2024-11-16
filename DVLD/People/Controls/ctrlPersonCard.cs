@@ -21,6 +21,10 @@ namespace DVLD
         }
 
         private clsPerson _Person;
+        public clsPerson Person
+        {
+            get { return _Person; }
+        }
 
         private int _PersonID = -1;
 
@@ -45,6 +49,7 @@ namespace DVLD
             }
 
             _FillPersonInfo();
+
         }
 
         public void LoadPersonInfo(string NationalNo)
@@ -54,10 +59,12 @@ namespace DVLD
             {
                 ResetPersonInfo();
                 MessageBox.Show("No Person with National No. = " + NationalNo.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+
+               
             }
 
             _FillPersonInfo();
+
         }
 
         private void _LoadPersonImage()
@@ -118,6 +125,11 @@ namespace DVLD
             frmAddOrUpdatePerson frmAddOrUpdatePerson = new frmAddOrUpdatePerson(_Person.PersonID);
             frmAddOrUpdatePerson.ShowDialog();
             LoadPersonInfo(_Person.PersonID);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

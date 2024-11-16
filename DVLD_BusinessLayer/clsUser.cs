@@ -27,18 +27,33 @@ namespace DVLD_BusinessLayer
             this.IsActive = isActive;
         }
 
-         public static int VerifyUserCredentials(string username, string password)
+        public static int AddNewUser(int personId, string userName, string password, bool isActive)
+        {
+
+            return clsUserDataAccess.AddUser(personId, userName, password, isActive);
+        }
+
+        public static bool UpdateUser(int userId, string userName, string password, bool isActive)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+
+            return clsUserDataAccess.UpdateUser(userId, userName, password, isActive);
+        }
+
+        public static int VerifyUserCredentials(string username, string password)
          {
  
             return clsUserDataAccess.VerifyUserCredentials(username, password);
          }
 
-
-
         public static bool IsUserActive(int userId)
         {
             return clsUserDataAccess.IsUserActive(userId);
         }
+
         public static clsUser FindUserById(int userId)
         {
 
@@ -81,5 +96,14 @@ namespace DVLD_BusinessLayer
             return clsUserDataAccess.DeleteUser(userId);
         }
 
+        public static bool IsUserExists(int PersonId)
+        {
+            return clsUserDataAccess.IsUserExistsById(PersonId);
+        }
+
+        public static bool IsUserExists(string userName)
+        {
+            return clsUserDataAccess.IsUserExistsByUsername(userName);
+        }
     }
 }

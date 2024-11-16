@@ -52,7 +52,7 @@
             // 
             this.ctrlUserCard1.Location = new System.Drawing.Point(-1, 2);
             this.ctrlUserCard1.Name = "ctrlUserCard1";
-            this.ctrlUserCard1.Size = new System.Drawing.Size(838, 400);
+            this.ctrlUserCard1.Size = new System.Drawing.Size(872, 400);
             this.ctrlUserCard1.TabIndex = 0;
             // 
             // label1
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 634);
+            this.ClientSize = new System.Drawing.Size(871, 634);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCurrentPassword);
             this.Controls.Add(this.pictureBox2);

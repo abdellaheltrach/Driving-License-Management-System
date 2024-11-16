@@ -25,16 +25,15 @@ namespace DVLD
         }
 
 
-        PeopleForm peopleForm = new PeopleForm();
+
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (peopleForm == null || peopleForm.IsDisposed)  // إذا تم إغلاقه، يتم إنشاء نموذج جديد
+            using (PeopleForm peopleForm = new PeopleForm())
             {
-                 peopleForm = new PeopleForm();
+                peopleForm.ShowDialog();
+
             }
 
-            peopleForm.Owner = this;
-            peopleForm.Show();
         }
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,21 +47,29 @@ namespace DVLD
 
         private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUserInfo frmUserInfo = new frmUserInfo(clsCurrentUser.CurrentUser.UserID);
-            frmUserInfo.Show();
+            using (frmUserInfo frmUserInfo = new frmUserInfo(clsCurrentUser.CurrentUser.UserID))
+            {
+                frmUserInfo.ShowDialog();
+            }
+                
+        
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangePassword frm = new frmChangePassword(clsCurrentUser.CurrentUser.UserID);
-            frm.Show();
+            using (frmChangePassword frm = new frmChangePassword(clsCurrentUser.CurrentUser.UserID))
+            {
+                frm.ShowDialog();
+            }
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UsersForm usersForm = new UsersForm();
-            usersForm.Owner = this;
-            usersForm.Show();
+            using (UsersForm usersForm = new UsersForm())
+            {
+                usersForm.ShowDialog();
+            }
+
         }
     }
 }

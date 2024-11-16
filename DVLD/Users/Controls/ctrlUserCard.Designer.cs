@@ -50,7 +50,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 309);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(823, 86);
+            this.groupBox1.Size = new System.Drawing.Size(867, 86);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Information";
@@ -125,7 +125,7 @@
             // 
             this.ctrlPersonCard1.Location = new System.Drawing.Point(3, 3);
             this.ctrlPersonCard1.Name = "ctrlPersonCard1";
-            this.ctrlPersonCard1.Size = new System.Drawing.Size(832, 300);
+            this.ctrlPersonCard1.Size = new System.Drawing.Size(876, 300);
             this.ctrlPersonCard1.TabIndex = 3;
             // 
             // ctrlUserCard
@@ -135,7 +135,7 @@
             this.Controls.Add(this.ctrlPersonCard1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ctrlUserCard";
-            this.Size = new System.Drawing.Size(838, 400);
+            this.Size = new System.Drawing.Size(870, 400);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -107,6 +107,7 @@ namespace DVLD.Users
 
         private void _ReloadUserList()
         {
+            _UsersTable = clsUser.GetAllUsers();
             dgvUsers.DataSource = _UsersTable;
             lblRecordsCount.Text = dgvUsers.RowCount.ToString();
             cbFilterBy.SelectedIndex = 0;
@@ -195,13 +196,19 @@ namespace DVLD.Users
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUserInfo frm = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
-            frm.ShowDialog();
+
+            using (frmUserInfo frm = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+            }
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (frmAddNewOrUpdateUser frm = new frmAddNewOrUpdateUser((int)dgvUsers.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,8 +232,12 @@ namespace DVLD.Users
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangePassword frm = new frmChangePassword((int)dgvUsers.CurrentRow.Cells[0].Value);
-            frm.ShowDialog();
+            using (frmChangePassword frm = new frmChangePassword((int)dgvUsers.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+            }
+            ;
+
 
         }
 
@@ -239,6 +250,15 @@ namespace DVLD.Users
         {
             MessageBox.Show("This Feature Is Not Implemented Yet!", "Not Ready!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            using (frmAddNewOrUpdateUser frm = new frmAddNewOrUpdateUser())
+            {
+                frm.ShowDialog();
+            }
+            _ReloadUserList();
         }
     }
 }

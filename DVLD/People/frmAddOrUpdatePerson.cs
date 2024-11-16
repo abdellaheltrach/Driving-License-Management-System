@@ -266,6 +266,7 @@ namespace DVLD
 
                 // Trigger the event to send data back to the caller form.
                 DataBack?.Invoke(this, _Person.PersonID);
+                this.Close();
             }
             else
                 MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
