@@ -17,25 +17,33 @@ namespace DVLD.Users
         {
             InitializeComponent();
         }
+
         public clsUser User;
+
+        private void _FillUserInfo()
+        {
+            ctrlPersonCard1.LoadPersonInfo(User.PersonID);
+            lblUserID.Text = User.UserID.ToString();
+            lblUserName.Text = User.UserName.ToString();
+            lblIsActive.Text = User.IsActive.ToString();
+            if (User.IsActive == true)
+            {
+                lblIsActive.Text = "Yes";
+            }
+            else
+                lblIsActive.Text = "No";
+
+
+
+        }
 
        public void LoadUserCard(int userId)
         {
-            ctrlPersonCard1.LoadPersonInfo(userId);
             User = clsUser.FindUserById(userId);
-
 
             if (User != null)
             {
-                lblUserID.Text = User.UserID.ToString();
-                lblUserName.Text = User.UserName.ToString();
-                lblIsActive.Text= User.IsActive.ToString();
-                if (User.IsActive == true)
-                {
-                    lblIsActive.Text = "Yes";
-                }
-                else
-                    lblIsActive.Text = "No";
+                _FillUserInfo();
             }
 
         }

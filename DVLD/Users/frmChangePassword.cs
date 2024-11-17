@@ -13,9 +13,11 @@ namespace DVLD.Users
 {
     public partial class frmChangePassword : Form
     {
+        int _UserID;
         public frmChangePassword(int UserId)
         {
             InitializeComponent();
+            this._UserID = UserId;
             ctrlUserCard1.LoadUserCard(UserId);
         }
 

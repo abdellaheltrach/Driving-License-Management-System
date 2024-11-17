@@ -17,30 +17,50 @@ namespace DVLD.Users
         private enum enMode { enAddNew  , enUpdate  }
         enMode _FrmMode;
 
+        int UserId = -1;
         clsUser _User;
 
-        private void PerformMode(enMode mode, int userId=0)
+        private void _LoadData()
+        {
+            if (_FrmMode == enMode.enUpdate)
+            {
+
+                lblUserID.Text = UserId.ToString();
+                txtUserName.Text = _User.UserName;
+                txtPassword.Text = _User.Password;
+                txtConfirmPassword.Text = _User.Password;
+                chkIsActive.Checked = _User.IsActive;
+            }
+            else 
+            {
+                lblUserID.Text = string.Empty;
+                txtUserName.Text = string.Empty;
+                txtPassword.Text = string.Empty;
+                txtConfirmPassword.Text = string.Empty;
+                chkIsActive.Checked = true;
+            }
+
+
+
+
+
+
+        }
+
+        private void _ResetDefaultValues(enMode mode, int userId=0)
         {
             _FrmMode = mode;
 
             if (mode == enMode.enUpdate)
             {
-                if (userId == 0)
-                {
-                    MessageBox.Show("User ID cannot be 0. Please provide a valid User ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+
                 _User = clsUser.FindUserById(userId);
                 lblTitle.Text = "Update User";
                 ctrlPersonCardWithFilter1.ctrlPersonCard1.LoadPersonInfo(_User.PersonID);
                 ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
-                
-                
-                lblUserID.Text = userId.ToString();
-                txtUserName.Text = _User.UserName;
-                txtPassword.Text = _User.Password;
-                txtConfirmPassword.Text = _User.Password;
-                chkIsActive.Checked = _User.IsActive;
+
+
+                _LoadData();
 
 
                 // Enable all controls in the Login Info tab for updates
@@ -53,11 +73,7 @@ namespace DVLD.Users
             {
                 lblTitle.Text = "Add New User";
 
-                lblUserID.Text = string.Empty;
-                txtUserName.Text = string.Empty;
-                txtPassword.Text = string.Empty;
-                txtConfirmPassword.Text = string.Empty;
-                chkIsActive.Checked = true;
+                _LoadData();
 
                 foreach (Control control in tpLoginInfo.Controls)
                 {
@@ -73,13 +89,14 @@ namespace DVLD.Users
         public frmAddNewOrUpdateUser()
         {
             InitializeComponent();
-            PerformMode(enMode.enAddNew);
+            _ResetDefaultValues(enMode.enAddNew);
         }
 
-        public frmAddNewOrUpdateUser(int personID)
+        public frmAddNewOrUpdateUser(int UserID)
         {
             InitializeComponent();
-            PerformMode(enMode.enUpdate, personID);
+            this.UserId=UserID;
+            _ResetDefaultValues(enMode.enUpdate, UserID);
 
         }
 
@@ -160,7 +177,7 @@ namespace DVLD.Users
                     MessageBox.Show("User added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblUserID.Text = userId.ToString();
                     btnSave.Enabled = false;
-                    PerformMode(enMode.enUpdate, userId);
+                    _ResetDefaultValues(enMode.enUpdate, userId);
 
 
 
@@ -183,7 +200,7 @@ namespace DVLD.Users
                 if (isUpdated)
                 {
                     MessageBox.Show("User updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PerformMode(enMode.enUpdate, int.Parse(lblUserID.Text.Trim()));
+                    _ResetDefaultValues(enMode.enUpdate, int.Parse(lblUserID.Text.Trim()));
 
                 }
                 else

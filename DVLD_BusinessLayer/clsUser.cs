@@ -6,25 +6,44 @@ using System.Text;
 using System.Threading.Tasks;
 using DVLD_DataAccessLayer;
 using System.Data;
+using static DVLD_BusinessLayer.clsPerson;
 
 namespace DVLD_BusinessLayer
 {
     public class clsUser
     {
 
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
+
         public int UserID { get; private set; }
         public int PersonID { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
         public bool IsActive { get; private set; }
+        public clsPerson PersonInfo;
+
+        public clsUser()
+
+        {
+            this.UserID = -1;
+            this.UserName = "";
+            this.Password = "";
+            this.IsActive = true;
+            Mode = enMode.AddNew;
+        }
+
 
         private clsUser(int userId, int personId, string userName, string password, bool isActive)
         {
             this.UserID = userId;
             this.PersonID = personId;
+            this.PersonInfo = clsPerson.Find(personId);
             this.UserName = userName;
             this.Password = password;
             this.IsActive = isActive;
+            Mode = enMode.Update;
+
         }
 
         public static int AddNewUser(int personId, string userName, string password, bool isActive)
