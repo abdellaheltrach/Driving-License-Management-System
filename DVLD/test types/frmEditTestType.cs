@@ -8,28 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace DVLD.Applications.Applications_types
+namespace DVLD.test_types
 {
-    public partial class frmEditApplicationType : Form
+    public partial class frmEditTestType : Form
     {
-        private int AppTypeID;
-        private clsApplicationTypes ApplicationType;
+        private int TestID;
+        private clsTestTypes TestType;
 
-        public frmEditApplicationType(int AppTypeID)
+        public frmEditTestType(int TestID)
         {
             InitializeComponent();
-            this.AppTypeID = AppTypeID;
-            this.ApplicationType = clsApplicationTypes.FindById(AppTypeID);
+            this.TestID = TestID;
+            this.TestType = clsTestTypes.FindById(TestID);
         }
 
-        private void frmEditApplicationType_Load(object sender, EventArgs e)
+
+        private void frmEditTestType_Load(object sender, EventArgs e)
         {
-            txtTitle.Text = ApplicationType.ApplicationTypeTitle;
-            txtFees.Text = ApplicationType.ApplicationFees.ToString();
-            lblApplicationTypeID.Text = AppTypeID.ToString();
+            txtTitle.Text = TestType.TestTypeTitle;
+            txtFees.Text = TestType.TestTypeFees.ToString();
+            txtDescription.Text = TestType.TestTypeDescription;
+            lblApplicationTypeID.Text = TestID.ToString();
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -42,7 +44,7 @@ namespace DVLD.Applications.Applications_types
             }
 
 
-            bool isUpdateSuccess = clsApplicationTypes.UpdateApplicationType(AppTypeID, txtTitle.Text.Trim(),int.Parse( txtFees.Text.Trim()));
+            bool isUpdateSuccess = clsTestTypes.UpdateTestType(TestID, txtTitle.Text.Trim(), int.Parse(txtFees.Text.Trim()),txtDescription.Text.Trim());
 
             if (isUpdateSuccess)
             {
@@ -76,7 +78,7 @@ namespace DVLD.Applications.Applications_types
 
         private void txtFees_TextChanged(object sender, EventArgs e)
         {
-            if (txtFees.Text.Trim() == ApplicationType.ApplicationFees.ToString())
+            if (txtFees.Text.Trim() == TestType.TestTypeFees.ToString())
             {
                 btnSave.Enabled = false;
 
@@ -87,7 +89,6 @@ namespace DVLD.Applications.Applications_types
                 btnSave.Enabled = true;
             }
         }
-
 
         private void EmptyTextBox_Validating(object sender, CancelEventArgs e)
         {
@@ -110,20 +111,32 @@ namespace DVLD.Applications.Applications_types
             }
         }
 
-        private void txtTitle_TextChanged(object sender, EventArgs e)
+        private void txtDescription_TextChanged(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Trim() == ApplicationType.ApplicationTypeTitle)
+            if (txtDescription.Text.Trim() == TestType.TestTypeDescription.ToString())
             {
                 btnSave.Enabled = false;
 
 
             }
-            else 
+            else
             {
                 btnSave.Enabled = true;
             }
         }
 
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTitle.Text.Trim() == TestType.TestTypeTitle.ToString())
+            {
+                btnSave.Enabled = false;
 
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
     }
 }
