@@ -28,3 +28,4 @@ C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Applications_types.frmEditApplicationType.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.test_types.frmListTestTypes.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.test_types.frmEditTestType.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Local_Driving_License_Application.frmLocalDrivingLicenseApplication.resources

@@ -3,11 +3,29 @@
   "WorkspaceRootPath": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\users\\usersform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:users\\usersform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\test types\\frmlisttesttypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\applications\\local driving license application\\frmlocaldrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\local driving license application\\frmlocaldrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\applications\\local driving license application\\frmlocaldrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\local driving license application\\frmlocaldrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDBAA85D-6CB0-4FCA-ADC0-8C432296F436}|..\\DVLD_DataAccessLayer\\DVLD_DataAccessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_dataaccesslayer\\clslocaldrivinglicenseapplicationsdataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\users\\usersform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:users\\usersform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5168AD0-0EBC-46E6-8E69-1B9E5A33CA40}|..\\DVLD_BusinessLayer\\DVLD_BusinessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_businesslayer\\clslocaldrivinglicenseapplications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\test types\\frmlisttesttypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:test types\\frmlisttesttypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -21,7 +39,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,19 +51,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs [Design]",
-              "RelativeToolTip": "Form1.cs [Design]",
+              "DocumentIndex": 3,
+              "Title": "clsLocalDrivingLicenseApplicationsDataAccess.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsLocalDrivingLicenseApplicationsDataAccess.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_DataAccessLayer\\clsLocalDrivingLicenseApplicationsDataAccess.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsLocalDrivingLicenseApplicationsDataAccess.cs",
+              "RelativeToolTip": "..\\DVLD_DataAccessLayer\\clsLocalDrivingLicenseApplicationsDataAccess.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T12:36:10.158Z",
+              "WhenOpened": "2024-11-19T15:12:12.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "clsLocalDrivingLicenseApplications.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsLocalDrivingLicenseApplications.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_BusinessLayer\\clsLocalDrivingLicenseApplications.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsLocalDrivingLicenseApplications.cs",
+              "RelativeToolTip": "..\\DVLD_BusinessLayer\\clsLocalDrivingLicenseApplications.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T15:20:46.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsersForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Users\\UsersForm.cs",
+              "RelativeDocumentMoniker": "Users\\UsersForm.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Users\\UsersForm.cs [Design]",
+              "RelativeToolTip": "Users\\UsersForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T11:35:34.697Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsersForm.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Users\\UsersForm.cs",
+              "RelativeDocumentMoniker": "Users\\UsersForm.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Users\\UsersForm.cs",
+              "RelativeToolTip": "Users\\UsersForm.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T13:33:57.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "frmLocalDrivingLicenseApplication.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "RelativeDocumentMoniker": "Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "RelativeToolTip": "Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAYwJgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T15:08:44.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmLocalDrivingLicenseApplication.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "RelativeDocumentMoniker": "Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs [Design]",
+              "RelativeToolTip": "Applications\\Local Driving License Application\\frmLocalDrivingLicenseApplication.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T11:33:59.195Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "frmListTestTypes.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\test types\\frmListTestTypes.cs",
               "RelativeDocumentMoniker": "test types\\frmListTestTypes.cs",
@@ -57,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "clsTestTypes.cs",
               "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsTestTypes.cs",
               "RelativeDocumentMoniker": "..\\DVLD_BusinessLayer\\clsTestTypes.cs",
@@ -65,8 +147,7 @@
               "RelativeToolTip": "..\\DVLD_BusinessLayer\\clsTestTypes.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T10:34:04.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T10:34:04.97Z"
             }
           ]
         }
