@@ -191,19 +191,19 @@ namespace DVLD
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete Person [" + dgvPeopleData.CurrentRow.Cells[0].Value + "]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Are you sure you want to delete ApplicantPerson [" + dgvPeopleData.CurrentRow.Cells[0].Value + "]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 
             {
 
                 //Perform Delele and refresh
                 if (clsPerson.DeletePerson((int)dgvPeopleData.CurrentRow.Cells[0].Value))
                 {
-                    MessageBox.Show("Person Deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("ApplicantPerson Deleted Successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _ReloadPersonList();
                 }
 
                 else
-                    MessageBox.Show("Person was not deleted because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ApplicantPerson was not deleted because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             

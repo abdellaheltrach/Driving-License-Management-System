@@ -112,12 +112,15 @@ namespace DVLD.Users
             {
                 if (ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID == -1)
                 {
+                    //no person selected
                     MessageBox.Show("Please select a person.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     ctrlPersonCardWithFilter1.ctrlPersonCard1.ResetPersonInfo();
                     return;
                 }
                 else if (clsUser.IsUserExists(ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID))
                 {
+                    //no person selected
+
                     MessageBox.Show("This person is already a user.", "User Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }

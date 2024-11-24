@@ -81,6 +81,7 @@ namespace DVLD_BusinessLayer
             Mode = enMode.Update;
         }
 
+
         private bool _AddNewPerson()
         {
             //call DataAccess Layer 
@@ -93,7 +94,6 @@ namespace DVLD_BusinessLayer
 
             return (this.PersonID != -1);
         }
-
         private bool _UpdatePerson()
         {
             //call DataAccess Layer 
@@ -104,6 +104,30 @@ namespace DVLD_BusinessLayer
                 this.Address, this.Phone, this.Email,
                   this.NationalityCountryID, this.ImagePath);
 
+        }
+        public bool Save()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+                    if (_AddNewPerson())
+                    {
+
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+
+                    return _UpdatePerson();
+
+            }
+
+            return false;
         }
 
         public static clsPerson Find(int PersonID)
@@ -161,30 +185,6 @@ namespace DVLD_BusinessLayer
 
 
 
-        public bool Save()
-        {
-            switch (Mode)
-            {
-                case enMode.AddNew:
-                    if (_AddNewPerson())
-                    {
-
-                        Mode = enMode.Update;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                case enMode.Update:
-
-                    return _UpdatePerson();
-
-            }
-
-            return false;
-        }
 
         public static DataTable GetAllPeople()
         {

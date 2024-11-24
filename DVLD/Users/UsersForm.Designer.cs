@@ -99,7 +99,7 @@
             "None",
             "User ID",
             "User Name",
-            "Person ID",
+            "ApplicantPerson ID",
             "Full Name",
             "Is Active"});
             this.cbFilterBy.Location = new System.Drawing.Point(134, 276);

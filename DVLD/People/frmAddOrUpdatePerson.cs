@@ -54,12 +54,12 @@ namespace DVLD
 
             if (_Mode == enMode.AddNew)
             {
-                lblTitle.Text = "Add New Person";
+                lblTitle.Text = "Add New ApplicantPerson";
                 _Person = new clsPerson();
             }
             else
             {
-                lblTitle.Text = "Update Person";
+                lblTitle.Text = "Update ApplicantPerson";
             }
 
             //set default image for the person.
@@ -111,7 +111,7 @@ namespace DVLD
 
             if (_Person == null)
             {
-                MessageBox.Show("No Person with ID = " + _PersonID, "Person Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No ApplicantPerson with ID = " + _PersonID, "ApplicantPerson Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.Close();
                 return;
             }
@@ -259,7 +259,7 @@ namespace DVLD
                 lblPersonID.Text = _Person.PersonID.ToString();
                 //change form mode to update.
                 _Mode = enMode.Update;
-                lblTitle.Text = "Update Person";
+                lblTitle.Text = "Update ApplicantPerson";
 
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

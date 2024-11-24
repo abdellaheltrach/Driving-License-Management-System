@@ -193,5 +193,25 @@ namespace DVLD.Applications.Local_Driving_License_Application
             _PerformFiltering();
 
         }
+
+        private void btnAddNewApplication_Click(object sender, EventArgs e)
+        {
+            using (frmAddUpdateLocalDrivingLicesnseApplication frm = new frmAddUpdateLocalDrivingLicesnseApplication())
+            {
+                frm.ShowDialog();
+            
+            }
+            _ReloadUserList();
+        }
+
+        private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            using (frmAddUpdateLocalDrivingLicesnseApplication frm = new frmAddUpdateLocalDrivingLicesnseApplication((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+
+            }
+            _ReloadUserList();
+        }
     }
 }

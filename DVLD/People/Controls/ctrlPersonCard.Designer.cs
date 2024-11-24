@@ -78,7 +78,7 @@
             this.llEditPersonInfo.Size = new System.Drawing.Size(149, 25);
             this.llEditPersonInfo.TabIndex = 139;
             this.llEditPersonInfo.TabStop = true;
-            this.llEditPersonInfo.Text = "Edit Person Info";
+            this.llEditPersonInfo.Text = "Edit ApplicantPerson Info";
             this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked);
             // 
             // lblCountry
@@ -167,7 +167,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(120, 25);
             this.label22.TabIndex = 113;
-            this.label22.Text = "Person ID :";
+            this.label22.Text = "ApplicantPerson ID :";
             // 
             // label5
             // 
@@ -295,7 +295,7 @@
             this.groupBox1.Size = new System.Drawing.Size(862, 262);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Person Information";
+            this.groupBox1.Text = "ApplicantPerson Information";
             // 
             // label3
             // 

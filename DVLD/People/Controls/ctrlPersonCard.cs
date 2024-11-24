@@ -44,7 +44,7 @@ namespace DVLD
             if (_Person == null)
             {
                 ResetPersonInfo();
-                MessageBox.Show("No Person with PersonID = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No ApplicantPerson with PersonID = " + PersonID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace DVLD
             if (_Person == null)
             {
                 ResetPersonInfo();
-                MessageBox.Show("No Person with National No. = " + NationalNo.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No ApplicantPerson with National No. = " + NationalNo.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                
             }

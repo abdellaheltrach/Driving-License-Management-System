@@ -563,7 +563,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(120, 25);
             this.label22.TabIndex = 116;
-            this.label22.Text = "Person ID :";
+            this.label22.Text = "ApplicantPerson ID :";
             // 
             // lblTitle
             // 
@@ -573,7 +573,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(928, 39);
             this.lblTitle.TabIndex = 115;
-            this.lblTitle.Text = "Add New Person";
+            this.lblTitle.Text = "Add New ApplicantPerson";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox10

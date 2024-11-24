@@ -21,10 +21,20 @@ namespace DVLD.People.Controls
 
         public void LoadPersonInfo (int personID)
         {
-            txtFilterValue.Text = personID.ToString();
             cbFilterBy.SelectedIndex = 0;
-            gbFilters.Enabled = false;
+            txtFilterValue.Text = personID.ToString();
+            //gbFilters.Enabled = true;
         }
+
+        public void LoadPersonInfo(string personNationalNO)
+        {
+            cbFilterBy.SelectedIndex = 1;
+            txtFilterValue.Text = personNationalNO;
+            btnFind_Click(null, null);
+            //gbFilters.Enabled = true;
+        }
+
+
 
         private void ReceiveAddedPersonD(object sender, int PersonID)
         {
