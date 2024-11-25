@@ -116,6 +116,11 @@ namespace DVLD_BusinessLayer
             }
         }
 
+        public static bool IsNewApplicationRepeated(string nationalNo, string className)
+        {
+            return clsLocalDrivingLicenseApplicationsDataAccess.IsNewApplicationRepeated(nationalNo, className);
+        }
+
         public static DataTable GetAllApplications()
         {
             return clsLocalDrivingLicenseApplicationsDataAccess.GetAllLocalDrivingLicenseApplications();

@@ -118,9 +118,7 @@ namespace DVLD_DataAccessLayer
             return newID;
         }
 
-        /// <summary>
-        /// Update an existing LocalDrivingLicenseApplication.
-        /// </summary>
+
         public static bool UpdateLocalDrivingLicenseApplication(int localDrivingLicenseApplicationsID, int applicationID, int licenseClassID)
         {
             bool isUpdated = false;
@@ -150,6 +148,33 @@ namespace DVLD_DataAccessLayer
             return isUpdated;
         }
 
+        public static bool IsNewApplicationRepeated(string nationalNo, string className)
+        {
+            bool exists = false;
+
+            string query = "SELECT COUNT(*) FROM LocalDrivingLicenseApplications_View " +
+                           "WHERE Status LIKE 'New' AND NationalNo = @NationalNo AND ClassName LIKE @ClassName";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NationalNo", nationalNo);
+                command.Parameters.AddWithValue("@ClassName", className);
+
+                try
+                {
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    exists = count > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An error occurred while checking the applications: " + ex.Message);
+                }
+            }
+
+            return exists;
+        }
 
         public static DataTable GetAllLocalDrivingLicenseApplications()
         {

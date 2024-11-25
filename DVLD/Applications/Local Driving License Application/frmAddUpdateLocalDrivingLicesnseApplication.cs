@@ -144,6 +144,9 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
         private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+    
+
+
             if (_Mode == enFrmMode.Update)
             {
                 if (cbLicenseClass.SelectedIndex == _Application.LocalDrivingLicenseApplication.LicenseClassID - 1)
@@ -163,8 +166,16 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (clsLocalDrivingLicenseApplications.IsNewApplicationRepeated(_Application.ApplicantPerson.NationalNo, cbLicenseClass.SelectedIndex.ToString()))
+            {
+                MessageBox.Show("This person already has an application in progress for the same class.",
+                                "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
             if (_Mode == enFrmMode.Update)
             {
+                _Application.LocalDrivingLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex + 1;
 
                 if (_Application.LocalDrivingLicenseApplication.Save())
                 {
