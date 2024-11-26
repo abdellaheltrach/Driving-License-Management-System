@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD.Users;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,8 @@ namespace DVLD.Applications.Local_Driving_License_Application
         public frmAddUpdateLocalDrivingLicesnseApplication()
         {
             InitializeComponent();
+            _Application = new clsApplications();
             _Mode = enFrmMode.AddNew;
-
         }
 
 
@@ -59,7 +60,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
                 lblTitle.Text = "Update local Driving License Application";
                 ctrlPersonCardWithFilter1.LoadPersonInfo(_Application.ApplicantPerson.NationalNo);
                 ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
-                _FillApplicationInfo();
+                
 
             }
 
@@ -82,7 +83,9 @@ namespace DVLD.Applications.Local_Driving_License_Application
             else
             {
                 lblApplicationDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
+                lblFees.Text= clsApplicationTypes.FindById(1).ApplicationFees.ToString();
+                lblCreatedByUser.Text = clsCurrentUser.CurrentUser.UserName;
+                cbLicenseClass.SelectedIndex = 2;
 
             }
 
@@ -97,13 +100,41 @@ namespace DVLD.Applications.Local_Driving_License_Application
             }
 
         }
+        void _FillNewApplicationObject()
+        {
+            if (_Mode == enFrmMode.Update)
+            {
+                //set the new LicenseClassID
+                _Application.LocalDrivingLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex + 1;
+            }
+            else
+            {
 
+                //fill the application properties
+                _Application.ApplicationDate = DateTime.Now;
+                _Application.ApplicationTypeID = 1;
+                _Application.ApplicationStatus = 1;
+                _Application.LastStatusDate = DateTime.Now;
+                _Application.PaidFees = clsApplicationTypes.FindById(1).ApplicationFees;
+                _Application.CreatedByUserID = clsCurrentUser.CurrentUser.UserID;
+
+                //fill the Local Driving License Application properties
+                _Application.LocalDrivingLicenseApplication = new clsLocalDrivingLicenseApplications();
+                _Application.LocalDrivingLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex + 1;
+            }
+        }
         private void frmAddUpdateLocalDrivingLicesnseApplication_Load(object sender, EventArgs e)
         {
 
             _FillComboBox();
 
             _RestDefaultValues();
+
+
+            if (_Mode == enFrmMode.Update)
+            {
+                _FillApplicationInfo();
+            }
 
         }
 
@@ -115,23 +146,31 @@ namespace DVLD.Applications.Local_Driving_License_Application
             }
             else
             {
+                //check is a person has selected
                 if (ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID == -1)
                 {
                     MessageBox.Show("Please select a person.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     ctrlPersonCardWithFilter1.ctrlPersonCard1.ResetPersonInfo();
                     return;
                 }
-                else if (clsUser.IsUserExists(ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID))
-                {
-                    tcPersonInfo.SelectedIndex = 1; 
-                    ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
-                    foreach (Control control in tcApplicationInfo.Controls)
-                    {
-                        control.Enabled = true;
 
-                    }
-                    return;
+                //load the person to the object
+                _Application.ApplicantPerson = clsPerson.Find(ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID);
+
+                //fill person info
+                _FillApplicationInfo();
+                // disable the filtring to prevent the user from changing the person and active the next tab controls
+                ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
+                
+                foreach (Control control in tcApplicationInfo.Controls)
+                {
+                    control.Enabled = true;
+
                 }
+                tcPersonInfo.SelectedIndex = 1;
+
+                btnSave.Enabled = true;
+
 
             }
 
@@ -166,16 +205,20 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (clsLocalDrivingLicenseApplications.IsNewApplicationRepeated(_Application.ApplicantPerson.NationalNo, cbLicenseClass.SelectedIndex.ToString()))
+            if (clsLocalDrivingLicenseApplications.IsNewApplicationRepeated(_Application.ApplicantPerson.NationalNo, cbLicenseClass.SelectedItem.ToString()))
             {
                 MessageBox.Show("This person already has an application in progress for the same class.",
                                 "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
 
 
             if (_Mode == enFrmMode.Update)
             {
-                _Application.LocalDrivingLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex + 1;
+
+
+                _FillNewApplicationObject();
 
                 if (_Application.LocalDrivingLicenseApplication.Save())
                 {
@@ -187,6 +230,39 @@ namespace DVLD.Applications.Local_Driving_License_Application
                 {
                     MessageBox.Show("The application update failed. Please try again.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+
+            }
+            else
+            {
+
+
+                _FillNewApplicationObject();
+
+
+                if (_Application.Save())
+                {
+                    // Notify the user of success
+                    MessageBox.Show("The application was saved successfully.",
+                                    "Save Successful",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+
+                    _Mode = enFrmMode.Update;
+                    _RestDefaultValues();
+                    _FillApplicationInfo();
+                }
+                else
+                {
+                    // Notify the user of failure
+                    MessageBox.Show("Failed to save the application. Please try again.",
+                                    "Save Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+
+
+
 
 
             }

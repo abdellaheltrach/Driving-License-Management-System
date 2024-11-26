@@ -82,7 +82,7 @@
             this.cbFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterBy.FormattingEnabled = true;
             this.cbFilterBy.Items.AddRange(new object[] {
-            "ApplicantPerson ID",
+            "Person ID",
             "National No."});
             this.cbFilterBy.Location = new System.Drawing.Point(126, 25);
             this.cbFilterBy.Name = "cbFilterBy";

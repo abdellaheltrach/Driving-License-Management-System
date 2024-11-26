@@ -8,12 +8,12 @@ namespace DVLD_BusinessLayer
 {
     public class clsLocalDrivingLicenseApplications
     {
-        public int LocalDrivingLicenseApplicationsID { get; private set; }
+        public int LocalDrivingLicenseApplicationsID { get;  set; }
         public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
 
         public enum enMode { AddNew, Update }
-        public enMode Mode { get; private set; }
+        public enMode Mode { get; set; }
 
         // Private constructor
         private clsLocalDrivingLicenseApplications(int localDrivingLicenseApplicationsID, int applicationID, int licenseClassID)
