@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD_Buisness;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,13 @@ namespace DVLD.Applications.Applications_types
         {
             InitializeComponent();
             this.AppTypeID = AppTypeID;
-            this.ApplicationType = clsApplicationTypes.FindById(AppTypeID);
+            this.ApplicationType = clsApplicationTypes.Find(AppTypeID);
         }
 
         private void frmEditApplicationType_Load(object sender, EventArgs e)
         {
-            txtTitle.Text = ApplicationType.ApplicationTypeTitle;
-            txtFees.Text = ApplicationType.ApplicationFees.ToString();
+            txtTitle.Text = ApplicationType.Title;
+            txtFees.Text = ApplicationType.Fees.ToString();
             lblApplicationTypeID.Text = AppTypeID.ToString();
         }
 
@@ -41,8 +42,11 @@ namespace DVLD.Applications.Applications_types
 
             }
 
+            ApplicationType.ID = this.AppTypeID;
+            ApplicationType.Fees = int.Parse(txtFees.Text.Trim());
+            ApplicationType.Title = txtTitle.Text.Trim();
 
-            bool isUpdateSuccess = clsApplicationTypes.UpdateApplicationType(AppTypeID, txtTitle.Text.Trim(),int.Parse( txtFees.Text.Trim()));
+            bool isUpdateSuccess = ApplicationType.Save();
 
             if (isUpdateSuccess)
             {
@@ -64,55 +68,67 @@ namespace DVLD.Applications.Applications_types
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
             {
-                e.Handled = true; // Prevent the character from being entered
                 errorProvider1.SetError(txtFees, "This field accept only numbers.");
             }
             else
             {
                 // Clear the error if there is text
                 errorProvider1.SetError(txtFees, null);
+
             }
         }
 
         private void txtFees_TextChanged(object sender, EventArgs e)
         {
-            if (txtFees.Text.Trim() == ApplicationType.ApplicationFees.ToString())
-            {
-                btnSave.Enabled = false;
-
-
-            }
-            else
-            {
-                btnSave.Enabled = true;
-            }
-        }
-
-
-        private void EmptyTextBox_Validating(object sender, CancelEventArgs e)
-        {
-            System.Windows.Forms.TextBox txtBox = (System.Windows.Forms.TextBox)sender;
-
-            // Check if the TextBox is empty
-            if (string.IsNullOrEmpty(txtBox.Text.Trim()))
+            if (string.IsNullOrEmpty(txtFees.Text.Trim()))
             {
                 // Cancel the event and show error
-                e.Cancel = true; // Prevent focus loss
                 btnSave.Enabled = false;
-                errorProvider1.SetError(txtBox, "This field cannot be empty.");
+                errorProvider1.SetError(txtFees, "This field cannot be empty.");
+                return;
             }
             else
             {
                 // Clear the error if there is text
                 btnSave.Enabled = true;
 
-                errorProvider1.SetError(txtBox, null);
+                errorProvider1.SetError(txtFees, null);
+            }
+
+
+            if (txtFees.Text.Trim() == ApplicationType.Fees.ToString())
+            {
+                btnSave.Enabled = false;
+
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
             }
         }
 
+
+
+
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Trim() == ApplicationType.ApplicationTypeTitle)
+            if (string.IsNullOrEmpty(txtTitle.Text.Trim()))
+            {
+                // Cancel the event and show error
+                btnSave.Enabled = false;
+                errorProvider1.SetError(txtTitle, "This field cannot be empty.");
+                return;
+            }
+            else
+            {
+                // Clear the error if there is text
+                btnSave.Enabled = true;
+
+                errorProvider1.SetError(txtTitle, null);
+            }
+
+            if (txtTitle.Text.Trim() == ApplicationType.Title)
             {
                 btnSave.Enabled = false;
 

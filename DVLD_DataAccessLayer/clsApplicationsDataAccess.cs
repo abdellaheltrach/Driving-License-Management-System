@@ -16,7 +16,7 @@ namespace DVLD_DataAccessLayer
             int applicationTypeID,
             byte applicationStatus,
             DateTime lastStatusDate,
-            decimal paidFees,
+            float paidFees,
             int createdByUserID)
         {
             int applicationID = -1;
@@ -63,7 +63,7 @@ namespace DVLD_DataAccessLayer
             int applicationTypeID,
             byte applicationStatus,
             DateTime lastStatusDate,
-            decimal paidFees,
+            float paidFees,
             int createdByUserID)
         {
             bool isUpdated = false;
@@ -131,7 +131,7 @@ namespace DVLD_DataAccessLayer
 
 
         public static bool GetApplicationInfoByAppID(int ApplicationID, ref int ApplicantPersonID, ref DateTime ApplicationDate, ref int ApplicationTypeID, ref byte ApplicationStatus, ref DateTime LastStatusDate,
-ref Decimal PaidFees, ref int CreatedByUserID)
+ref float PaidFees, ref int CreatedByUserID)
         {
             bool isFound = false;
 
@@ -160,7 +160,7 @@ ref Decimal PaidFees, ref int CreatedByUserID)
                     ApplicationTypeID = (int)reader["ApplicationTypeID"];
                     ApplicationStatus = (byte)reader["ApplicationStatus"];
                     LastStatusDate = (DateTime)reader["LastStatusDate"];
-                    PaidFees = (Decimal)reader["PaidFees"];
+                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
 
 

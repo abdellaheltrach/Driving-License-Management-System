@@ -10,7 +10,7 @@ namespace DVLD_DataAccessLayer
 {
     public class clsLocalDrivingLicenseApplicationsDataAccess
     {
-        public static bool FindLocalDrivingLicenseApplicationByLocalDrivingLicenseApplicationsID(
+        public static bool FindByLocalDrivingLicenseApplicationID(
             int localDrivingLicenseApplicationsID,
             ref int applicationID,
             ref int licenseClassID)

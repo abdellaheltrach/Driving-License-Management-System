@@ -88,7 +88,6 @@
             this.txtTitle.Size = new System.Drawing.Size(344, 22);
             this.txtTitle.TabIndex = 141;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
-            this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
             // label1
             // 
@@ -122,7 +121,6 @@
             this.txtFees.TabIndex = 142;
             this.txtFees.TextChanged += new System.EventHandler(this.txtFees_TextChanged);
             this.txtFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFees_KeyPress);
-            this.txtFees.Validating += new System.ComponentModel.CancelEventHandler(this.EmptyTextBox_Validating);
             // 
             // errorProvider1
             // 

@@ -625,7 +625,7 @@ namespace DVLD.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap TestType_512 {
             get {
-                object obj = ResourceManager.GetObject("TestType 512", resourceCulture);
+                object obj = ResourceManager.GetObject("_TestType 512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

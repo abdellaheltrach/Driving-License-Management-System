@@ -27,10 +27,14 @@ namespace DVLD.test_types
         {
             _TestTypes = clsTestTypes.GetTestTypes();
             dgvTestTypes.DataSource = _TestTypes;
-            dgvTestTypes.Columns[0].Width = 50;
-            dgvTestTypes.Columns[1].Width = 120;
-            dgvTestTypes.Columns[2].Width = 400;
-            dgvTestTypes.Columns[3].Width = 70;
+            if (dgvTestTypes.Rows.Count > 0)
+            {
+                dgvTestTypes.Columns[0].Width = 50;
+                dgvTestTypes.Columns[1].Width = 120;
+                dgvTestTypes.Columns[2].Width = 400;
+                dgvTestTypes.Columns[3].Width = 70;
+
+            }
 
             lblRecordsCount.Text = dgvTestTypes.Rows.Count.ToString();
         }

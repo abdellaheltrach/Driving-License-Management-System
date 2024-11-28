@@ -12,100 +12,183 @@ namespace DVLD_DataAccessLayer
     {
 
 
-
-        public static bool FindApplicationTypeById(int applicationTypeID, ref string title, ref int fees)
+        public static bool GetApplicationTypeInfoByID(int ApplicationTypeID,
+                  ref string ApplicationTypeTitle, ref float ApplicationFees)
         {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
             string query = "SELECT * FROM ApplicationTypes WHERE ApplicationTypeID = @ApplicationTypeID";
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
 
-                try
+                if (reader.Read())
                 {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Assign values to ref parameters
-                            title = reader["ApplicationTypeTitle"].ToString();
-                            fees = Convert.ToInt32(reader["ApplicationFees"]);
 
-                            return true;    
-                        }
-                        else
-                        {
+                    // The record was found
+                    isFound = true;
 
-                            return false;
-                        }
-                    }
+                    ApplicationTypeTitle = (string)reader["ApplicationTypeTitle"];
+                    ApplicationFees = Convert.ToSingle(reader["ApplicationFees"]);
+
+
+
+
+
                 }
-                catch (Exception ex)
+                else
                 {
-                    return false;
+                    // The record was not found
+                    isFound = false;
                 }
+
+                reader.Close();
+
+
             }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
         }
-
-
 
         public static DataTable GetAllApplicationTypes()
         {
-            string query = "SELECT [ApplicationTypeID] AS [ID], [ApplicationTypeTitle] AS [Title], [ApplicationFees] AS [Fees] FROM [dbo].[ApplicationTypes]";
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "select * from [dbo].[ApplicationTypes] order by ApplicationTypeID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                DataTable applicationTypesTable = new DataTable();
+                connection.Open();
 
-                try
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
                 {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(applicationTypesTable); // Fills the DataTable with the query results
-                }
-                catch (Exception ex)
-                {
-                    //throw new Exception("An error occurred while retrieving application types: " + ex.Message);
+                    dt.Load(reader);
                 }
 
-                return applicationTypesTable;
+                reader.Close();
+
+
             }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+
+                
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
         }
 
-
-        public static bool UpdateApplicationType(int applicationTypeId, string newTitle, decimal newFees)
+        public static int AddNewApplicationType(string Title, float Fees)
         {
-            string query = @"
-        UPDATE [dbo].[ApplicationTypes]
-        SET [ApplicationTypeTitle] = @ApplicationTypeTitle, 
-            [ApplicationFees] = @ApplicationFees
-        WHERE [ApplicationTypeID] = @ApplicationTypeID";
+            int ApplicationTypeID = -1;
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"Insert Into ApplicationTypes (ApplicationTypeTitle,ApplicationFees)
+                            Values (@Title,@Fees)
+                            
+                            SELECT SCOPE_IDENTITY();";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicationTypeTitle", Title);
+            command.Parameters.AddWithValue("@ApplicationFees", Fees);
+
+            try
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ApplicationTypeTitle", newTitle);
-                command.Parameters.AddWithValue("@ApplicationFees", newFees);
-                command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeId);
+                connection.Open();
 
-                try
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery(); // Execute the update query
-                    return rowsAffected > 0; // Returns true if at least one row was updated
-                }
-                catch (Exception ex)
-                {
-                    //throw new Exception("An error occurred while updating the application type: " + ex.Message);
-                    return false;
+                    ApplicationTypeID = insertedID;
                 }
             }
+
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return ApplicationTypeID;
+
         }
 
+        public static bool UpdateApplicationType(int ApplicationTypeID, string Title, float Fees)
+        {
 
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"Update  ApplicationTypes  
+                            set ApplicationTypeTitle = @Title,
+                                ApplicationFees = @Fees
+                                where ApplicationTypeID = @ApplicationTypeID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            command.Parameters.AddWithValue("@Title", Title);
+            command.Parameters.AddWithValue("@Fees", Fees);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
 
 
     }

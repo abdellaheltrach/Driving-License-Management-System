@@ -6,21 +6,38 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_BusinessLayer
 {
-    public class clsLocalDrivingLicenseApplications
+    public class clsLocalDrivingLicenseApplications : clsApplications
     {
         public int LocalDrivingLicenseApplicationsID { get;  set; }
-        public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
+        public clsLicenseClasses LicenseClassesInfo;
 
         public enum enMode { AddNew, Update }
-        public enMode Mode { get; set; }
+        public enMode Mode;
 
         // Private constructor
-        private clsLocalDrivingLicenseApplications(int localDrivingLicenseApplicationsID, int applicationID, int licenseClassID)
+        private clsLocalDrivingLicenseApplications(int localDrivingLicenseApplicationsID, int applicationID, int licenseClassID,
+            int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
         {
             this.LocalDrivingLicenseApplicationsID = localDrivingLicenseApplicationsID;
             this.ApplicationID = applicationID;
             this.LicenseClassID = licenseClassID;
+
+            //to the base class
+
+            this.ApplicationID = ApplicationID;
+            this.ApplicantPersonID = ApplicantPersonID;
+            this.ApplicantPerson = clsPerson.Find(ApplicantPersonID);
+            this.ApplicationDate = ApplicationDate;
+
+            this.ApplicationTypeID = ApplicationTypeID;
+            this.ApplicationStatus = ApplicationStatus;
+            this.LastStatusDate = LastStatusDate;
+            this.PaidFees = PaidFees;
+            this.CreatedByUserID = CreatedByUserID;
+            this.CreatedByUserInfo = clsUser.FindUserById(CreatedByUserID);
+
+
             this.Mode = enMode.Update;
         }
 
@@ -30,16 +47,32 @@ namespace DVLD_BusinessLayer
             this.LocalDrivingLicenseApplicationsID = -1;
             this.ApplicationID = -1;
             this.LicenseClassID = -1;
+
+            //set parameters of the base class
+
+
+
+            this.ApplicationID = -1;
+            this.ApplicantPersonID = -1;
+            this.ApplicantPerson = null;
+            this.ApplicationDate = DateTime.Now;
+            this.ApplicationTypeID = -1;
+            this.ApplicationStatus = 0;
+            this.LastStatusDate = DateTime.Now;
+            this.PaidFees = -1;
+            this.CreatedByUserID = -1;
+
+
             this.Mode = enMode.AddNew;
         }
 
         // Static method to find and build the object
-        public static clsLocalDrivingLicenseApplications FindByLocalDrivingLicenseApplicationsID(int localDrivingLicenseApplicationsID)
+        public static clsLocalDrivingLicenseApplications FindByLocalDrivingLicenseApplicationID(int localDrivingLicenseApplicationsID)
         {
-            int appID = 0;
-            int licenseClassID = 0;
+            int appID = -1;
+            int licenseClassID = -1;
 
-            bool isFound = clsLocalDrivingLicenseApplicationsDataAccess.FindLocalDrivingLicenseApplicationByLocalDrivingLicenseApplicationsID(
+            bool isFound = clsLocalDrivingLicenseApplicationsDataAccess.FindByLocalDrivingLicenseApplicationID(
                 localDrivingLicenseApplicationsID,
                 ref appID,
                 ref licenseClassID
@@ -47,7 +80,12 @@ namespace DVLD_BusinessLayer
 
             if (isFound)
             {
-                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID);
+                clsApplications application = clsApplications.Find(appID);
+
+
+
+                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID,
+            application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
             }
 
             return null;
@@ -66,7 +104,10 @@ namespace DVLD_BusinessLayer
 
             if (isFound)
             {
-                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID);
+                clsApplications application = clsApplications.Find(appID);
+
+
+                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID, application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
             }
 
             return null;
@@ -95,6 +136,16 @@ namespace DVLD_BusinessLayer
 
         public bool Save()
         {
+
+            //Because of inheritance first we call the save method in the base class,
+            //it will take care of adding all information to the application table.
+
+
+            base.Mode = (clsApplications.enMode)this.Mode;
+
+            if (!base.Save())
+                return false;
+
             switch (Mode)
             {
                 case enMode.AddNew:

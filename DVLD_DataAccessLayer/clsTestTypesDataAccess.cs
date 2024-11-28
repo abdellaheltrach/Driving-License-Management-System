@@ -47,6 +47,41 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static int AddNewTestType(string title, int fees, string description)
+        {
+            int TestTypeID = -1;
+
+            string query = @"Insert Into TestTypes (TestTypeTitle,TestTypeTitle,TestTypeFees)
+                            Values (@TestTypeTitle,@TestTypeDescription,@ApplicationFees)
+                            where TestTypeID = @TestTypeID;
+                            SELECT SCOPE_IDENTITY();";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@TestTypeTitle", title);
+                command.Parameters.AddWithValue("@TestTypeDescription", description);
+                command.Parameters.AddWithValue("@ApplicationFees", fees);
+
+                try
+                {
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        TestTypeID = insertedID;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log error if needed
+                }
+                return TestTypeID;
+
+            }
+        }
+
         public static DataTable GetAllTestTypes()
         {
             string query = @"
@@ -65,16 +100,22 @@ namespace DVLD_DataAccessLayer
                 try
                 {
                     connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(testTypesTable); // Fills the DataTable with the query results
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Load the data from the reader into the DataTable
+                    testTypesTable.Load(reader);
+
+                    reader.Close(); // Close the reader when done
                 }
                 catch (Exception ex)
                 {
                     // Log error (if needed)
+                    throw new Exception("An error occurred while retrieving test types: " + ex.Message);
                 }
 
                 return testTypesTable;
             }
+
         }
 
         public static bool UpdateTestType(int testTypeId, string newTitle, int newFees, string newDescription)

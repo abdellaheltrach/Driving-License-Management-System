@@ -1,12 +1,6 @@
 ﻿using DVLD_BusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD.test_types
@@ -14,21 +8,21 @@ namespace DVLD.test_types
     public partial class frmEditTestType : Form
     {
         private int TestID;
-        private clsTestTypes TestType;
+        private clsTestTypes _TestType;
 
         public frmEditTestType(int TestID)
         {
             InitializeComponent();
             this.TestID = TestID;
-            this.TestType = clsTestTypes.FindById(TestID);
+            this._TestType = clsTestTypes.FindById((clsTestTypes.enTestType)TestID);
         }
 
 
         private void frmEditTestType_Load(object sender, EventArgs e)
         {
-            txtTitle.Text = TestType.TestTypeTitle;
-            txtFees.Text = TestType.TestTypeFees.ToString();
-            txtDescription.Text = TestType.TestTypeDescription;
+            txtTitle.Text = _TestType.TestTypeTitle;
+            txtFees.Text = _TestType.TestTypeFees.ToString();
+            txtDescription.Text = _TestType.TestTypeDescription;
             lblApplicationTypeID.Text = TestID.ToString();
         }
 
@@ -44,17 +38,19 @@ namespace DVLD.test_types
             }
 
 
-            bool isUpdateSuccess = clsTestTypes.UpdateTestType(TestID, txtTitle.Text.Trim(), int.Parse(txtFees.Text.Trim()),txtDescription.Text.Trim());
+            //fill the object 
+            _TestType.TestTypeTitle = txtTitle.Text.Trim();
+            _TestType.TestTypeFees = int.Parse(txtFees.Text.Trim());
+            _TestType.TestTypeDescription = txtDescription.Text.Trim();
 
-            if (isUpdateSuccess)
+            if (_TestType.Save())
             {
-                MessageBox.Show("Application Type updated successfully.", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             else
-            {
-                MessageBox.Show("Failed to update Application Type.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -78,7 +74,7 @@ namespace DVLD.test_types
 
         private void txtFees_TextChanged(object sender, EventArgs e)
         {
-            if (txtFees.Text.Trim() == TestType.TestTypeFees.ToString())
+            if (txtFees.Text.Trim() == _TestType.TestTypeFees.ToString())
             {
                 btnSave.Enabled = false;
 
@@ -113,7 +109,7 @@ namespace DVLD.test_types
 
         private void txtDescription_TextChanged(object sender, EventArgs e)
         {
-            if (txtDescription.Text.Trim() == TestType.TestTypeDescription.ToString())
+            if (txtDescription.Text.Trim() == _TestType.TestTypeDescription.ToString())
             {
                 btnSave.Enabled = false;
 
@@ -127,7 +123,7 @@ namespace DVLD.test_types
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-            if (txtTitle.Text.Trim() == TestType.TestTypeTitle.ToString())
+            if (txtTitle.Text.Trim() == _TestType.TestTypeTitle.ToString())
             {
                 btnSave.Enabled = false;
 

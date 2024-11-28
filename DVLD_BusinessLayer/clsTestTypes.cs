@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using DVLD_DataAccessLayer;
 
@@ -7,32 +6,67 @@ namespace DVLD_BusinessLayer
 {
     public class clsTestTypes
     {
-        public int TestTypeID { get; set; }
+        public enum enTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 };
+        public enum enMode { AddNew = 0, Update = 1 };
+
+        public enTestType TestTypeID { get; set; }
         public string TestTypeTitle { get; set; }
         public int TestTypeFees { get; set; }
         public string TestTypeDescription { get; set; }
 
-        // Constructor
-        public clsTestTypes(int testTypeID, string title, int fees, string description)
+        public enMode Mode { get; set; }
+
+        public clsTestTypes()
         {
-            this.TestTypeID = testTypeID;
-            this.TestTypeTitle = title;
-            this.TestTypeFees = fees;
-            this.TestTypeDescription = description;
+            this.Mode = enMode.AddNew;
         }
 
-        // Find a TestType by its ID
-        public static clsTestTypes FindById(int testTypeID)
+        // Save Method
+        public bool Save()
+        {
+            if (Mode == enMode.AddNew)
+            {
+                return _AddNewTestType();
+            }
+            else if (Mode == enMode.Update)
+            {
+                return _UpdateTestType();
+            }
+            return false;
+        }
+
+        private bool _AddNewTestType()
+        {
+
+            this.TestTypeID = (clsTestTypes.enTestType)clsTestTypesDataAccess.AddNewTestType(this.TestTypeTitle, this.TestTypeFees, this.TestTypeDescription);
+
+            return (this.TestTypeTitle != "");
+        }
+
+        private bool _UpdateTestType()
+        {
+            return clsTestTypesDataAccess.UpdateTestType((int)this.TestTypeID, this.TestTypeTitle, this.TestTypeFees, this.TestTypeDescription);
+        }
+
+        // Existing methods for finding and retrieving test types remain unchanged.
+        public static clsTestTypes FindById(enTestType testTypeID)
         {
             string title = "";
             int fees = 0;
             string description = "";
 
-            bool isFound = clsTestTypesDataAccess.FindTestTypeById(testTypeID, ref title, ref fees, ref description);
+            bool isFound = clsTestTypesDataAccess.FindTestTypeById((int)testTypeID, ref title, ref fees, ref description);
 
             if (isFound)
             {
-                return new clsTestTypes(testTypeID, title, fees, description);
+                return new clsTestTypes
+                {
+                    TestTypeID = testTypeID,
+                    TestTypeTitle = title,
+                    TestTypeFees = fees,
+                    TestTypeDescription = description,
+                    Mode = enMode.Update
+                };
             }
             else
             {
@@ -40,16 +74,9 @@ namespace DVLD_BusinessLayer
             }
         }
 
-        // Get all TestTypes
         public static DataTable GetTestTypes()
         {
             return clsTestTypesDataAccess.GetAllTestTypes();
-        }
-
-        // Update a TestType
-        public static bool UpdateTestType(int testTypeID, string testTypeTitle, int testTypeFees, string testTypeDescription)
-        {
-            return clsTestTypesDataAccess.UpdateTestType(testTypeID, testTypeTitle, testTypeFees, testTypeDescription);
         }
     }
 }

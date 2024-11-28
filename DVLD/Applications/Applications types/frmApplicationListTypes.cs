@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD_Buisness;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,10 +22,17 @@ namespace DVLD.Applications.Applications_types
 
         private void ReloadDataGridView()
         {
-            _ApplicationTypes = clsApplicationTypes.GetApplicationTypes();
-            dgvApplicationTypes.DataSource = _ApplicationTypes;
-            dgvApplicationTypes.Columns[1].Width = 256;
-            lblRecordsCount.Text = dgvApplicationTypes.Rows.Count.ToString();
+            _ApplicationTypes = clsApplicationTypes.GetAllApplicationTypes();
+            dgvApplicationTypes.DataSource = _ApplicationTypes ;
+
+
+            if (dgvApplicationTypes.Rows.Count>0)
+            {
+                dgvApplicationTypes.DataSource = _ApplicationTypes;
+                dgvApplicationTypes.Columns[1].Width = 256;
+
+            lblRecordsCount.Text = dgvApplicationTypes.Rows.Count.ToString(); 
+            }
         }
 
         private void frmApplicationListTypes_Load(object sender, EventArgs e)

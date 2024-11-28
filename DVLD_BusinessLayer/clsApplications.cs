@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DVLD_Buisness;
 using DVLD_BusinessLayer;
 using DVLD_DataAccessLayer;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,20 +13,24 @@ namespace DVLD_BusinessLayer
     public class clsApplications
     {
 
+
         public int ApplicationID { get; set; }
-        public clsPerson ApplicantPerson { get; set; }
+        public int ApplicantPersonID;
+        public clsPerson ApplicantPerson;
         public DateTime ApplicationDate { get; set; }
         public int ApplicationTypeID { get; set; }
+
+        public clsApplicationTypes ApplicationTypeInfo;
         public byte ApplicationStatus { get; set; }
         public DateTime LastStatusDate { get; set; }
-        public Decimal PaidFees { get; set; }
-        public int CreatedByUserID { get; set; }
+        public float PaidFees { get; set; }
+        public int CreatedByUserID;
 
-        public clsLocalDrivingLicenseApplications LocalDrivingLicenseApplication { get; set ; }
+        public clsUser CreatedByUserInfo;
 
 
         public enum enMode { AddNew = 0, Update = 1 };
-        public enMode Mode = enMode.AddNew;
+        public enMode Mode;
 
         public enum enApplicationType
         {
@@ -36,12 +41,13 @@ namespace DVLD_BusinessLayer
         }
         private enApplicationType applicationType;
 
-
+        public enum enstaus { New=1 , Completed = 2 , Cancelled = 3 }
 
         public clsApplications()
         {
             Mode = enMode.AddNew;
             this.ApplicationID = -1;
+            this.ApplicantPersonID = -1;
             this.ApplicantPerson = null;
             this.ApplicationDate = DateTime.Now;
             this.ApplicationTypeID = -1;
@@ -54,6 +60,28 @@ namespace DVLD_BusinessLayer
 
         }
 
+
+        private clsApplications(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
+        {
+            this.ApplicationID = ApplicationID;
+            this.ApplicantPersonID = ApplicantPersonID;
+            this.ApplicantPerson = clsPerson.Find(ApplicantPersonID);
+            this.ApplicationDate = ApplicationDate;
+
+            this.ApplicationTypeID = ApplicationTypeID;
+            this.ApplicationStatus = ApplicationStatus;
+            this.LastStatusDate = LastStatusDate;
+            this.PaidFees = PaidFees;
+            this.CreatedByUserID = CreatedByUserID;
+            this.CreatedByUserInfo = clsUser.FindUserById(CreatedByUserID);
+            Mode = enMode.Update;
+
+
+        }
+
+
+
+
         public static clsApplications Find(int ApplicationID)
         {
             int ApplicantPersonID = -1;
@@ -61,7 +89,7 @@ namespace DVLD_BusinessLayer
             int ApplicationTypeID = -1;
             byte ApplicationStatus = 0; 
             DateTime LastStatusDate = DateTime.Now;
-            Decimal PaidFees = -1; 
+            float PaidFees = -1; 
             int CreatedByUserID = -1;
 
             bool IsFound = clsApplicationsDataAccess.GetApplicationInfoByAppID
@@ -102,40 +130,17 @@ namespace DVLD_BusinessLayer
         }
 
 
-        private void _AssignObjectClass()
-        {
-            switch (ApplicationTypeID)
-            { 
-                case 1:
-                    applicationType = enApplicationType.NewLocalDrivingLicenseService;
-                    break;
-                default:
-                    break;
 
-
-
-            }
-
-
-
-        }
 
         public bool Save()
         {
 
-            _AssignObjectClass();
 
             switch (Mode)
             {
                 case enMode.AddNew:
                     if (_AddNewApp())
                     {
-                        if (applicationType == enApplicationType.NewLocalDrivingLicenseService)
-                        {
-                            LocalDrivingLicenseApplication.ApplicationID = this.ApplicationID;
-                           return LocalDrivingLicenseApplication.Save();
-                        
-                        }
 
 
                         Mode = enMode.Update;
@@ -154,45 +159,26 @@ namespace DVLD_BusinessLayer
             }
         }
 
-        private clsApplications(int ApplicationID, int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID, byte ApplicationStatus, DateTime LastStatusDate, Decimal PaidFees, int CreatedByUserID)
-        {
-            Mode = enMode.Update;
-            this.ApplicationID = ApplicationID;
-            this.ApplicantPerson = clsPerson.Find(ApplicantPersonID);
-            this.ApplicationDate = ApplicationDate;
-            if (ApplicationTypeID == 1)
-            {
-                this.applicationType = enApplicationType.NewLocalDrivingLicenseService;
-                this.LocalDrivingLicenseApplication= clsLocalDrivingLicenseApplications.FindByApplicationId(ApplicationID);
-
-            }
-            this.ApplicationTypeID = ApplicationTypeID;
-            this.ApplicationStatus = ApplicationStatus;
-            this.LastStatusDate = LastStatusDate;
-            this.PaidFees = PaidFees;
-            this.CreatedByUserID = CreatedByUserID;
 
 
+        //public static clsApplications FindApplicationByLocalDrivingLicenceApplicationID(int LocalDrivingLicenceApplicationID)
+        //{
+        //    //using Local Driving License Application ID here we return the ApplicationID of the Local Driving License Application that we needs
+        //    int ApplicationID = clsApplicationsDataAccess.GetApplicationIDByLocalDrivingLicenseApplicationID(LocalDrivingLicenceApplicationID);
 
-        }
-        public static clsApplications FindByLocalDrivingLicenceApplicationID(int LocalDrivingLicenceApplicationID)
-        {
-            //using Local Driving License Application ID here we return the ApplicationID of the Local Driving License Application that we needs
-            int ApplicationID = clsApplicationsDataAccess.GetApplicationIDByLocalDrivingLicenseApplicationID(LocalDrivingLicenceApplicationID);
+        //    if (ApplicationID == -1)
+        //    {
+        //        return null;
 
-            if (ApplicationID == -1)
-            {
-                return null;
-
-            }
-            else
-            {
-                return clsApplications.Find(ApplicationID);
+        //    }
+        //    else
+        //    {
+        //        return clsApplications.Find(ApplicationID);
 
 
-            }
+        //    }
 
-        }
+        //}
 
         private bool _UpdateApp()
         {

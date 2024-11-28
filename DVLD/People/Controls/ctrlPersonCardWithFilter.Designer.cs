@@ -134,10 +134,10 @@
         #endregion
         private System.Windows.Forms.Button btnAddNewPerson;
         private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.ComboBox cbFilterBy;
         private System.Windows.Forms.TextBox txtFilterValue;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.GroupBox gbFilters;
         public ctrlPersonCard ctrlPersonCard1;
+        public System.Windows.Forms.ComboBox cbFilterBy;
     }
 }
