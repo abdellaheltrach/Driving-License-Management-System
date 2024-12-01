@@ -1,4 +1,5 @@
-﻿using DVLD_DataAccessLayer;
+﻿using DVLD_Buisness;
+using DVLD_DataAccessLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -29,9 +30,11 @@ namespace DVLD_BusinessLayer
             this.ApplicantPersonID = ApplicantPersonID;
             this.ApplicantPerson = clsPerson.Find(ApplicantPersonID);
             this.ApplicationDate = ApplicationDate;
+            this.ApplicationTypeInfo = clsApplicationTypes.Find(ApplicationTypeID);
+
 
             this.ApplicationTypeID = ApplicationTypeID;
-            this.ApplicationStatus = ApplicationStatus;
+            this.ApplicationStatus = (enApplicationStatus)ApplicationStatus;
             this.LastStatusDate = LastStatusDate;
             this.PaidFees = PaidFees;
             this.CreatedByUserID = CreatedByUserID;
@@ -85,7 +88,7 @@ namespace DVLD_BusinessLayer
 
 
                 return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID,
-            application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
+            application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, (byte)application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
             }
 
             return null;
@@ -107,7 +110,7 @@ namespace DVLD_BusinessLayer
                 clsApplications application = clsApplications.Find(appID);
 
 
-                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID, application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
+                return new clsLocalDrivingLicenseApplications(localDrivingLicenseApplicationsID, appID, licenseClassID, application.ApplicantPersonID, application.ApplicationDate, application.ApplicationTypeID, (byte)application.ApplicationStatus, application.LastStatusDate, application.PaidFees, application.CreatedByUserID);
             }
 
             return null;
@@ -167,9 +170,35 @@ namespace DVLD_BusinessLayer
             }
         }
 
+
+
+        public bool Delete()
+        {
+            bool IsLocalDrivingApplicationDeleted = false;
+            bool IsBaseApplicationDeleted = false;
+            //First we delete the Local Driving License Application
+            IsLocalDrivingApplicationDeleted = clsLocalDrivingLicenseApplicationsDataAccess.DeleteLocalDrivingApplication(this.LocalDrivingLicenseApplicationsID);
+
+            if (!IsLocalDrivingApplicationDeleted)
+                return false;
+
+
+            //Then we delete the base Application
+            IsBaseApplicationDeleted = base.DeleteApplication();
+            return IsBaseApplicationDeleted;
+
+        }
+
+
         public static bool IsNewApplicationRepeated(string nationalNo, string className)
         {
             return clsLocalDrivingLicenseApplicationsDataAccess.IsNewApplicationRepeated(nationalNo, className);
+        }
+
+
+        public byte GetPassedTestCount()
+        {
+            return clsLocalDrivingLicenseApplicationsDataAccess.GetPassedTestCount(this.LocalDrivingLicenseApplicationsID);
         }
 
         public static DataTable GetAllApplications()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using DVLD_Buisness;
@@ -21,7 +22,26 @@ namespace DVLD_BusinessLayer
         public int ApplicationTypeID { get; set; }
 
         public clsApplicationTypes ApplicationTypeInfo;
-        public byte ApplicationStatus { get; set; }
+        public enApplicationStatus ApplicationStatus { get; set; }
+        public string StatusText
+        {
+            get
+            {
+
+                switch (ApplicationStatus)
+                {
+                    case enApplicationStatus.New:
+                        return "New";
+                    case enApplicationStatus.Cancelled:
+                        return "Cancelled";
+                    case enApplicationStatus.Completed:
+                        return "Completed";
+                    default:
+                        return "Unknown";
+                }
+            }
+
+        }
         public DateTime LastStatusDate { get; set; }
         public float PaidFees { get; set; }
         public int CreatedByUserID;
@@ -41,7 +61,7 @@ namespace DVLD_BusinessLayer
         }
         private enApplicationType applicationType;
 
-        public enum enstaus { New=1 , Completed = 2 , Cancelled = 3 }
+        public enum enApplicationStatus { New=1 , Completed = 2 , Cancelled = 3 }
 
         public clsApplications()
         {
@@ -67,9 +87,10 @@ namespace DVLD_BusinessLayer
             this.ApplicantPersonID = ApplicantPersonID;
             this.ApplicantPerson = clsPerson.Find(ApplicantPersonID);
             this.ApplicationDate = ApplicationDate;
+            this.ApplicationTypeInfo = clsApplicationTypes.Find(ApplicationTypeID);
 
             this.ApplicationTypeID = ApplicationTypeID;
-            this.ApplicationStatus = ApplicationStatus;
+            this.ApplicationStatus = (enApplicationStatus)ApplicationStatus;
             this.LastStatusDate = LastStatusDate;
             this.PaidFees = PaidFees;
             this.CreatedByUserID = CreatedByUserID;
@@ -120,7 +141,7 @@ namespace DVLD_BusinessLayer
                 this.ApplicantPerson.PersonID,
                 this.ApplicationDate,
                 this.ApplicationTypeID,
-                this.ApplicationStatus,
+                (byte)this.ApplicationStatus,
                 this.LastStatusDate,
                 this.PaidFees,
                 this.CreatedByUserID
@@ -161,24 +182,6 @@ namespace DVLD_BusinessLayer
 
 
 
-        //public static clsApplications FindApplicationByLocalDrivingLicenceApplicationID(int LocalDrivingLicenceApplicationID)
-        //{
-        //    //using Local Driving License Application ID here we return the ApplicationID of the Local Driving License Application that we needs
-        //    int ApplicationID = clsApplicationsDataAccess.GetApplicationIDByLocalDrivingLicenseApplicationID(LocalDrivingLicenceApplicationID);
-
-        //    if (ApplicationID == -1)
-        //    {
-        //        return null;
-
-        //    }
-        //    else
-        //    {
-        //        return clsApplications.Find(ApplicationID);
-
-
-        //    }
-
-        //}
 
         private bool _UpdateApp()
         {
@@ -188,16 +191,16 @@ namespace DVLD_BusinessLayer
                 this.ApplicantPerson.PersonID,
                 this.ApplicationDate,
                 this.ApplicationTypeID,
-                this.ApplicationStatus,
+                (byte)this. ApplicationStatus,
                 this.LastStatusDate,
                 this.PaidFees,
                 this.CreatedByUserID
             );
         }
 
-        public static bool DeleteApplication(ref int applicationID)
+        public bool DeleteApplication()
         {
-            return clsApplicationsDataAccess.DeleteApplication(ref applicationID);
+            return clsApplicationsDataAccess.DeleteApplication(this.ApplicationID);
         }
     }
 }

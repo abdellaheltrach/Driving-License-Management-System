@@ -212,5 +212,62 @@ namespace DVLD_DataAccessLayer
             }
         }
 
+        public static bool DeleteLocalDrivingApplication(int localDrivingApplicationID)
+        {
+            string query = "DELETE FROM LocalDrivingLicenseApplications WHERE LocalDrivingLicenseApplicationID = @LocalDrivingApplicationID";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@LocalDrivingApplicationID", localDrivingApplicationID);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery(); // Execute the delete query
+                    return rowsAffected > 0; // Return true if a row was deleted
+                }
+                catch (Exception ex)
+                {
+                    // Log error if necessary
+                    throw new Exception("An error occurred while deleting the application: " + ex.Message);
+                }
+            }
+        }
+
+
+        public static byte GetPassedTestCount(int localDrivingLicenseApplicationID)
+        {
+            string query = @"
+        SELECT PassedTestCount 
+        FROM LocalDrivingLicenseApplications_View 
+        WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar(); // ExecuteScalar retrieves a single value
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToByte(result); // Return the value as an integer
+                    }
+                    else
+                    {
+                        return 0; // Default value if no result is found
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exception (log it if necessary)
+                    throw new Exception("An error occurred while retrieving PassedTestCount: " + ex.Message);
+                }
+            }
+        }
+
     }
 }

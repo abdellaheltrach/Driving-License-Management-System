@@ -106,7 +106,7 @@ namespace DVLD_DataAccessLayer
         }
 
         // Delete an application
-        public static bool DeleteApplication(ref int applicationID)
+        public static bool DeleteApplication(int applicationID)
         {
             string query = "DELETE FROM [dbo].[Applications] WHERE [ApplicationID] = @ApplicationID";
 

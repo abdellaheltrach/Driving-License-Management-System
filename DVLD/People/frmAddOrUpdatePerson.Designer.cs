@@ -563,7 +563,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(120, 25);
             this.label22.TabIndex = 116;
-            this.label22.Text = "ApplicantPerson ID :";
+            this.label22.Text = "Person ID :";
             // 
             // lblTitle
             // 

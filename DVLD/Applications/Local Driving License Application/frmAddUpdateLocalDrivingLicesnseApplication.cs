@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DVLD_BusinessLayer.clsApplications;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD.Applications.Local_Driving_License_Application
@@ -52,7 +53,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
                 cbLicenseClass.SelectedIndex = 2;
                 ctrlPersonCardWithFilter1.cbFilterBy.SelectedIndex = 1;
 
-                foreach (Control control in tcApplicationInfo.Controls)
+                foreach (System.Windows.Forms.Control control in tcApplicationInfo.Controls)
                 {
                     control.Enabled = false;
 
@@ -116,7 +117,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
                 //fill the application properties
                 _LocalApplication.ApplicationDate = DateTime.Now;
                 _LocalApplication.ApplicationTypeID = 1;
-                _LocalApplication.ApplicationStatus = 1;
+                _LocalApplication.ApplicationStatus = (enApplicationStatus)1;
                 _LocalApplication.LastStatusDate = DateTime.Now;
                 _LocalApplication.PaidFees = clsApplicationTypes.Find(1).Fees;
                 _LocalApplication.CreatedByUserID = clsCurrentUser.CurrentUser.UserID;
@@ -162,7 +163,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
                 // disable the filtring to prevent the user from changing the person and active the next tab controls
                 ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
                 
-                foreach (Control control in tcApplicationInfo.Controls)
+                foreach (System.Windows.Forms.Control control in tcApplicationInfo.Controls)
                 {
                     control.Enabled = true;
 
@@ -267,6 +268,11 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
             }
 
+        }
+
+        private void frmAddUpdateLocalDrivingLicesnseApplication_Activated(object sender, EventArgs e)
+        {
+            ctrlPersonCardWithFilter1.gbFilters.Focus();
         }
     }
 }

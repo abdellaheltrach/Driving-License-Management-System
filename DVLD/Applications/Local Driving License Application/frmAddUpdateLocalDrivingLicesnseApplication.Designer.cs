@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnApplicationInfoNext = new System.Windows.Forms.Button();
+            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.lblTitle = new System.Windows.Forms.Label();
             this.cbLicenseClass = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.tcPersonInfo = new System.Windows.Forms.TabControl();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.tpPersonalInfo.SuspendLayout();
             this.tcApplicationInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -130,6 +130,14 @@
             this.btnApplicationInfoNext.Text = "Next";
             this.btnApplicationInfoNext.UseVisualStyleBackColor = true;
             this.btnApplicationInfoNext.Click += new System.EventHandler(this.btnApplicationInfoNext_Click);
+            // 
+            // ctrlPersonCardWithFilter1
+            // 
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(9, 9);
+            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1320, 650);
+            this.ctrlPersonCardWithFilter1.TabIndex = 120;
             // 
             // lblTitle
             // 
@@ -322,14 +330,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // ctrlPersonCardWithFilter1
-            // 
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(9, 9);
-            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1320, 650);
-            this.ctrlPersonCardWithFilter1.TabIndex = 120;
-            // 
             // frmAddUpdateLocalDrivingLicesnseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -342,6 +342,7 @@
             this.Controls.Add(this.btnSave);
             this.Name = "frmAddUpdateLocalDrivingLicesnseApplication";
             this.Text = "frmAddUpdateLocalDrivingLicesnseApplication";
+            this.Activated += new System.EventHandler(this.frmAddUpdateLocalDrivingLicesnseApplication_Activated);
             this.Load += new System.EventHandler(this.frmAddUpdateLocalDrivingLicesnseApplication_Load);
             this.tpPersonalInfo.ResumeLayout(false);
             this.tcApplicationInfo.ResumeLayout(false);

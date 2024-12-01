@@ -30,3 +30,6 @@ C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.test_types.frmEditTestType.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Local_Driving_License_Application.frmLocalDrivingLicenseApplication.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Local_Driving_License_Application.frmAddUpdateLocalDrivingLicesnseApplication.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Local_Driving_License_Application.Control.ctrlDrivingLicenseAplicationInfo.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Control.ctrlApplicationBasicInfo.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Local_Driving_License_Application.frmLocalDrivingLicenseApplicationInfo.resources
