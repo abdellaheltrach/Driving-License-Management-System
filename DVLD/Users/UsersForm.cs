@@ -116,7 +116,7 @@ namespace DVLD.Users
             if (dgvUsers.Rows.Count > 0)
             {
                 dgvUsers.Columns[0].HeaderText = "User ID";
-                dgvUsers.Columns[1].HeaderText = "ApplicantPerson ID";
+                dgvUsers.Columns[1].HeaderText = "Person ID";
 
                 dgvUsers.Columns[2].HeaderText = "Full Name";
                 dgvUsers.Columns[2].Width = 200;

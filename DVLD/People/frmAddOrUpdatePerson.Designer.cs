@@ -573,7 +573,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(928, 39);
             this.lblTitle.TabIndex = 115;
-            this.lblTitle.Text = "Add New ApplicantPerson";
+            this.lblTitle.Text = "Add New Person";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox10

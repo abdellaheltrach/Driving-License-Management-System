@@ -1,10 +1,12 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD.Tests;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -248,6 +250,66 @@ namespace DVLD.Applications.Local_Driving_License_Application
             
             
             
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+
+            clsLocalDrivingLicenseApplications CourantApplication = clsLocalDrivingLicenseApplications.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
+
+            int TotalPassedTestes = CourantApplication.GetPassedTestCount();
+
+
+            switch (TotalPassedTestes)
+            {
+                case 0:
+                    scheduleVisionTestToolStripMenuItem.Enabled = true;
+                    scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                    scheduleStreetTestToolStripMenuItem.Enabled = false;
+                    break;
+                case 1:
+                    scheduleVisionTestToolStripMenuItem.Enabled = false;
+                    scheduleWrittenTestToolStripMenuItem.Enabled = true;
+                    scheduleStreetTestToolStripMenuItem.Enabled = false;
+                    break;
+                case 2:
+                    scheduleVisionTestToolStripMenuItem.Enabled = false;
+                    scheduleWrittenTestToolStripMenuItem.Enabled = false;
+                    scheduleStreetTestToolStripMenuItem.Enabled = true;
+                    break;
+                case 3:
+                    sechduleTestsToolStripMenuItem.Enabled = false;
+
+                    break;
+
+            }
+
+
+        }
+
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmListAppointments frm = new frmListAppointments((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.VisionTest))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmListAppointments frm = new frmListAppointments((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.WrittenTest))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmListAppointments frm = new frmListAppointments((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.StreetTest))
+            {
+                frm.ShowDialog();
             }
         }
     }
