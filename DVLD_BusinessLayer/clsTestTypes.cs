@@ -14,6 +14,8 @@ namespace DVLD_BusinessLayer
         public int TestTypeFees { get; set; }
         public string TestTypeDescription { get; set; }
 
+
+
         public enMode Mode { get; set; }
 
         public clsTestTypes()
@@ -49,19 +51,19 @@ namespace DVLD_BusinessLayer
         }
 
         // Existing methods for finding and retrieving test types remain unchanged.
-        public static clsTestTypes FindById(enTestType testTypeID)
+        public static clsTestTypes FindById(enTestType testType)
         {
             string title = "";
             int fees = 0;
             string description = "";
 
-            bool isFound = clsTestTypesDataAccess.FindTestTypeById((int)testTypeID, ref title, ref fees, ref description);
+            bool isFound = clsTestTypesDataAccess.FindTestTypeById((int)testType, ref title, ref fees, ref description);
 
             if (isFound)
             {
                 return new clsTestTypes
                 {
-                    TestTypeID = testTypeID,
+                    TestTypeID = testType,
                     TestTypeTitle = title,
                     TestTypeFees = fees,
                     TestTypeDescription = description,

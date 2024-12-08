@@ -74,8 +74,8 @@ namespace DVLD.Tests
 
             if (dgvLicenseTestAppointments.Rows.Count > 0)
             {
-                dgvLicenseTestAppointments.Columns[0].HeaderText = "Appointment ID";
-                dgvLicenseTestAppointments.Columns[0].Width = 150;
+                dgvLicenseTestAppointments.Columns[0].HeaderText = "TestAppointment ID";
+                dgvLicenseTestAppointments.Columns[0].Width = 180;
 
                 dgvLicenseTestAppointments.Columns[1].HeaderText = "Appointment Date";
                 dgvLicenseTestAppointments.Columns[1].Width = 200;
@@ -91,8 +91,20 @@ namespace DVLD.Tests
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("This feature is not available yet. It will be implemented in a future update.", "Feature Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            clsLocalDrivingLicenseApplications localDrivingLicenseApplication = clsLocalDrivingLicenseApplications.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
 
+            if (localDrivingLicenseApplication.IsThereAnActiveScheduledTest(_TestType))
+            {
+                MessageBox.Show("Person Already have an active appointment for this test, You cannot add new appointment", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
+            using (frmScheduleTest frm = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _TestType))
+            { 
+                frm.ShowDialog();
+            }
 
         }
 

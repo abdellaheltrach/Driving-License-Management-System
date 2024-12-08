@@ -37,7 +37,7 @@ namespace DVLD_BusinessLayer
 
         }
 
-        public clsLicenseClasses(int LicenseClassID, string ClassName,
+        private clsLicenseClasses(int LicenseClassID, string ClassName,
             string ClassDescription,
             byte MinimumAllowedAge, byte DefaultValidityLength, float ClassFees)
 

@@ -16,6 +16,7 @@ namespace DVLD_BusinessLayer
         public int TestAppointmentID { set; get; }
         public clsTestTypes.enTestType TestTypeID { set; get; }
         public int LocalDrivingLicenseApplicationID { set; get; }
+        public clsLocalDrivingLicenseApplications LocalDrivingLicenseApplicationInfo;
         public DateTime AppointmentDate { set; get; }
         public float PaidFees { set; get; }
         public int CreatedByUserID { set; get; }
@@ -36,7 +37,7 @@ namespace DVLD_BusinessLayer
 
         }
 
-        public clsTestAppointment(int TestAppointmentID, clsTestTypes.enTestType TestTypeID,
+        private clsTestAppointment(int TestAppointmentID, clsTestTypes.enTestType TestTypeID,
            int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, float PaidFees,
            int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
 
@@ -44,6 +45,7 @@ namespace DVLD_BusinessLayer
             this.TestAppointmentID = TestAppointmentID;
             this.TestTypeID = TestTypeID;
             this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            this.LocalDrivingLicenseApplicationInfo = clsLocalDrivingLicenseApplications.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
             this.AppointmentDate = AppointmentDate;
             this.PaidFees = PaidFees;
             this.CreatedByUserID = CreatedByUserID;
@@ -131,7 +133,10 @@ namespace DVLD_BusinessLayer
 
         }
 
-
-
+        public static int CountTestTrails(int localDrivingLicenseApplicationID, string testTypeTitle)
+        {
+            return clsTestAppointmentDataAccess.CountTestTrails(localDrivingLicenseApplicationID, testTypeTitle);
+        }
     }
+
 }

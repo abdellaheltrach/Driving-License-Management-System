@@ -64,6 +64,20 @@ namespace DVLD_Buisness
 
         }
 
+
+        public static clsApplicationTypes Find(string Title)
+        {
+             float Fees = 0; int ID =-1;
+
+            if (clsApplicationTypesDataAccessLayer.GetApplicationTypeInfoByTitle(Title  , ref ID, ref Fees))
+
+                return new clsApplicationTypes(ID, Title, Fees);
+            else
+                return null;
+
+        }
+
+
         public static DataTable GetAllApplicationTypes()
         {
             return clsApplicationTypesDataAccessLayer.GetAllApplicationTypes();

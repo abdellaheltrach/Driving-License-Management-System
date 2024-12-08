@@ -139,6 +139,12 @@
     <Compile Include="Tests\frmListAppointments.Designer.cs">
       <DependentUpon>frmListAppointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tests\frmScheduleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\frmScheduleTest.Designer.cs">
+      <DependentUpon>frmScheduleTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\test types\frmEditTestType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +242,9 @@
     </Compile>
     <EmbeddedResource Include="Tests\frmListAppointments.resx">
       <DependentUpon>frmListAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\frmScheduleTest.resx">
+      <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\test types\frmEditTestType.resx">
       <DependentUpon>frmEditTestType.cs</DependentUpon>
@@ -489,6 +498,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Count 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

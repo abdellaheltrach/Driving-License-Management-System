@@ -227,5 +227,40 @@ namespace DVLD_DataAccessLayer
 
             return dt;
         }
+
+        public static int CountTestTrails(int localDrivingLicenseApplicationID, string testTypeTitle)
+        {
+            int count = 0;
+
+            string query = @"
+                SELECT COUNT(*)
+                FROM TestAppointments_View
+                WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                AND TestTypeTitle = @TestTypeTitle
+                AND IsLocked = 1";
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@TestTypeTitle", testTypeTitle);
+
+                try
+                {
+                    connection.Open();
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception as needed
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return count;
+        }
     }
 }

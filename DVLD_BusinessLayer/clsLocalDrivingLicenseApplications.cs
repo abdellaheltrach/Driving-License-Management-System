@@ -189,12 +189,15 @@ namespace DVLD_BusinessLayer
 
         }
 
+        public bool IsThereAnActiveScheduledTest(clsTestTypes.enTestType TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationsDataAccess.IsThereAnActiveScheduledTest(this.LocalDrivingLicenseApplicationsID, (int)TestTypeID);
+        }
 
         public static bool IsNewApplicationRepeated(string nationalNo, string className)
         {
             return clsLocalDrivingLicenseApplicationsDataAccess.IsNewApplicationRepeated(nationalNo, className);
         }
-
 
         public byte GetPassedTestCount()
         {
@@ -205,5 +208,7 @@ namespace DVLD_BusinessLayer
         {
             return clsLocalDrivingLicenseApplicationsDataAccess.GetAllLocalDrivingLicenseApplications();
         }
+
+        
     }
 }

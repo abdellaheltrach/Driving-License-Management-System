@@ -67,6 +67,47 @@ namespace DVLD_DataAccessLayer
             return isFound;
         }
 
+
+        public static bool GetApplicationTypeInfoByTitle(string ApplicationTypeTitle, ref int ApplicationTypeID, ref float ApplicationFees)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT * FROM ApplicationTypes WHERE ApplicationTypeTitle = @ApplicationTypeTitle";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                isFound = true;
+
+                                ApplicationTypeID = (int)reader["ApplicationTypeID"];
+                                ApplicationFees = Convert.ToSingle(reader["ApplicationFees"]);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle or log the exception if needed
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
+        }
+
+
+
         public static DataTable GetAllApplicationTypes()
         {
 
