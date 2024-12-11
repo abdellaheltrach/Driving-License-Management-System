@@ -115,13 +115,28 @@ namespace DVLD.Tests
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not available yet. It will be implemented in a future update.", "Feature Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using (frmScheduleTest frm = new frmScheduleTest((int)dgvLicenseTestAppointments.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+            
+            
+            }
+
 
         }
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This feature is not available yet. It will be implemented in a future update.", "Feature Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if ((bool)dgvLicenseTestAppointments.CurrentRow.Cells[3].Value)
+                contextMenuStrip1.Items[0].Text = "Appointment Details";
+            else
+                contextMenuStrip1.Items[0].Text = "&Edit";
 
         }
     }
