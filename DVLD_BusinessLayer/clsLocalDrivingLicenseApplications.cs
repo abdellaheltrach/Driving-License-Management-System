@@ -23,6 +23,8 @@ namespace DVLD_BusinessLayer
             this.LocalDrivingLicenseApplicationsID = localDrivingLicenseApplicationsID;
             this.ApplicationID = applicationID;
             this.LicenseClassID = licenseClassID;
+            this.LicenseClassesInfo = clsLicenseClasses.Find(licenseClassID);
+
 
             //to the base class
 
@@ -209,6 +211,10 @@ namespace DVLD_BusinessLayer
             return clsLocalDrivingLicenseApplicationsDataAccess.GetAllLocalDrivingLicenseApplications();
         }
 
-        
+        public clsTest GetLastTestPerTestType(clsTestTypes.enTestType TestTypeID)
+        {
+            return clsTest.FindLastTestPerPersonAndLicenseClass(this.ApplicantPersonID, this.LicenseClassID, TestTypeID);
+        }
+
     }
 }

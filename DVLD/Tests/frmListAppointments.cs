@@ -59,18 +59,13 @@ namespace DVLD.Tests
                     }
             }
         }
-
-        private void frmLIstAppointments_Load(object sender, EventArgs e)
+        private void _ReloadDataGridView()
         {
-            _LoadTestTypeImageAndTitle();
 
-
-            ctrlDrivingLicenseAplicationInfo1.LoadApplicationInfoByLocalDrivingAppID(_LocalDrivingLicenseApplicationID);
             _dtLicenseTestAppointments = clsTestAppointment.GetApplicationTestAppointmentsPerTestType(_LocalDrivingLicenseApplicationID, _TestType);
-
-
             dgvLicenseTestAppointments.DataSource = _dtLicenseTestAppointments;
             lblRecordsCount.Text = dgvLicenseTestAppointments.Rows.Count.ToString();
+
 
             if (dgvLicenseTestAppointments.Rows.Count > 0)
             {
@@ -88,9 +83,22 @@ namespace DVLD.Tests
             }
         }
 
+        private void frmLIstAppointments_Load(object sender, EventArgs e)
+        {
+            _LoadTestTypeImageAndTitle();
+
+
+            ctrlDrivingLicenseAplicationInfo1.LoadApplicationInfoByLocalDrivingAppID(_LocalDrivingLicenseApplicationID);
+
+
+            _ReloadDataGridView();
+
+
+        }
+
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
-
+            //check if person have already an active appointment 
             clsLocalDrivingLicenseApplications localDrivingLicenseApplication = clsLocalDrivingLicenseApplications.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
 
             if (localDrivingLicenseApplication.IsThereAnActiveScheduledTest(_TestType))
@@ -100,12 +108,32 @@ namespace DVLD.Tests
             }
 
 
+            clsTest LastTest = localDrivingLicenseApplication.GetLastTestPerTestType(_TestType);
+
+            if (LastTest == null)
+            {
+                //person has not take any test before
+                using (frmScheduleTest frm = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _TestType))
+                {
+                    frm.ShowDialog();
+                }
+                _ReloadDataGridView();
+                return;
+            }
+
+            //if person already passed the test s/he cannot retake it.
+            if (LastTest.TestResult == true)
+            {
+                MessageBox.Show("This person already passed this test before, you can only retake faild test", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
 
             using (frmScheduleTest frm = new frmScheduleTest(_LocalDrivingLicenseApplicationID, _TestType))
             { 
                 frm.ShowDialog();
             }
-
+            _ReloadDataGridView();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -127,14 +155,22 @@ namespace DVLD.Tests
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not available yet. It will be implemented in a future update.", "Feature Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            using (frmTakeTest frm = new frmTakeTest((int)dgvLicenseTestAppointments.CurrentRow.Cells[0].Value))
+            {
+                frm.ShowDialog();
+            }
+            _ReloadDataGridView();
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             if ((bool)dgvLicenseTestAppointments.CurrentRow.Cells[3].Value)
+            { 
                 contextMenuStrip1.Items[0].Text = "Appointment Details";
+                contextMenuStrip1.Items[1].Enabled = false;
+
+
+            }
             else
                 contextMenuStrip1.Items[0].Text = "&Edit";
 
