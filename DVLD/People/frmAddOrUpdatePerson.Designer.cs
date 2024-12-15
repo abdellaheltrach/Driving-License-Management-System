@@ -600,6 +600,7 @@
             this.Controls.Add(this.lblPersonID);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddOrUpdatePerson";
             this.Text = "frmAddOrUpdatePerson";
             this.Load += new System.EventHandler(this.frmAddOrUpdatePerson_Load);

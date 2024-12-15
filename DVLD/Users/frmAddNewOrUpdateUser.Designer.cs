@@ -33,6 +33,7 @@
             this.tcUserInfo = new System.Windows.Forms.TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnPersonInfoNext = new System.Windows.Forms.Button();
+            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             this.tpLoginInfo = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblUserID = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.ctrlPersonCardWithFilter1 = new DVLD.People.Controls.ctrlPersonCardWithFilter();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tcUserInfo.SuspendLayout();
             this.tpPersonalInfo.SuspendLayout();
@@ -101,6 +101,14 @@
             this.btnPersonInfoNext.Text = "Next";
             this.btnPersonInfoNext.UseVisualStyleBackColor = true;
             this.btnPersonInfoNext.Click += new System.EventHandler(this.btnPersonInfoNext_Click);
+            // 
+            // ctrlPersonCardWithFilter1
+            // 
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(6, 6);
+            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1306, 638);
+            this.ctrlPersonCardWithFilter1.TabIndex = 0;
+            this.ctrlPersonCardWithFilter1.Load += new System.EventHandler(this.ctrlPersonCardWithFilter1_Load);
             // 
             // tpLoginInfo
             // 
@@ -315,14 +323,6 @@
             this.lblTitle.TabIndex = 122;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ctrlPersonCardWithFilter1
-            // 
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(6, 6);
-            this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1306, 638);
-            this.ctrlPersonCardWithFilter1.TabIndex = 0;
-            this.ctrlPersonCardWithFilter1.Load += new System.EventHandler(this.ctrlPersonCardWithFilter1_Load);
-            // 
             // frmAddNewOrUpdateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -333,6 +333,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tcUserInfo);
             this.Controls.Add(this.btnClose);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddNewOrUpdateUser";
             this.Text = "frmAddNewUser";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

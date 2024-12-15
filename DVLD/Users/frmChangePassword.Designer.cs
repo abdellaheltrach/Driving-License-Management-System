@@ -200,6 +200,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.ctrlUserCard1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmChangePassword";
             this.Text = "frmChangePassword";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

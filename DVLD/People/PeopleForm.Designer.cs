@@ -250,6 +250,7 @@
             this.Controls.Add(this.FilterComboBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvPeopleData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PeopleForm";
             this.Text = "PeopleForm";
             this.Load += new System.EventHandler(this.PeopleForm_Load);

@@ -340,6 +340,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tcPersonInfo);
             this.Controls.Add(this.btnSave);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddUpdateLocalDrivingLicesnseApplication";
             this.Text = "frmAddUpdateLocalDrivingLicesnseApplication";
             this.Activated += new System.EventHandler(this.frmAddUpdateLocalDrivingLicesnseApplication_Activated);

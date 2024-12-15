@@ -514,5 +514,8 @@
   <ItemGroup>
     <None Include="Resources\Notes 32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Licenses\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

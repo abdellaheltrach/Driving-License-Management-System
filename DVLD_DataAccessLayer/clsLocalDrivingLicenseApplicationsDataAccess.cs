@@ -230,7 +230,8 @@ namespace DVLD_DataAccessLayer
                 catch (Exception ex)
                 {
                     // Log error if necessary
-                    throw new Exception("An error occurred while deleting the application: " + ex.Message);
+                    //throw new Exception("An error occurred while deleting the application: " + ex.Message);
+                    return false;
                 }
             }
         }
