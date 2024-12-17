@@ -216,5 +216,10 @@ namespace DVLD_BusinessLayer
             return clsTest.FindLastTestPerPersonAndLicenseClass(this.ApplicantPersonID, this.LicenseClassID, TestTypeID);
         }
 
+        public int GetActiveLicenseID()
+        {//this will get the license id that belongs to this application
+            return clsLicense.GetActiveLicenseIDByPersonID(this.ApplicantPersonID, this.LicenseClassID);
+        }
+
     }
 }

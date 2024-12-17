@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD.Licenses.Local_Licenses;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,8 +87,11 @@ namespace DVLD.Applications.Local_Driving_License_Application.Control
 
         private void llShowLicenceInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("This feature is not available yet. It will be implemented in a future update.", "Feature Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            using (frmShowLicenseInfo frm = new frmShowLicenseInfo(_LocalDrivingLicenseApplication.GetActiveLicenseID()))
+            { 
+                frm.ShowDialog();
+            
+            }
         }
     }
 }

@@ -36,3 +36,6 @@ C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Tests.frmLIstAppointments.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Tests.frmScheduleTest.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Tests.frmTakeTest.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfo.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfoWithFilter.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Licenses.Local_Licenses.frmShowLicenseInfo.resources
