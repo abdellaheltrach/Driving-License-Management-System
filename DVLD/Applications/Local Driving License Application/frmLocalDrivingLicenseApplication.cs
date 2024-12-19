@@ -1,4 +1,5 @@
-﻿using DVLD.Tests;
+﻿using DVLD.Licenses.Local_Licenses;
+using DVLD.Tests;
 using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -261,7 +262,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
             int TotalPassedTestes = CourantApplication.GetPassedTestCount();
 
-
+            //handle tests
             switch (TotalPassedTestes)
             {
                 case 0:
@@ -281,10 +282,42 @@ namespace DVLD.Applications.Local_Driving_License_Application
                     break;
                 case 3:
                     sechduleTestsToolStripMenuItem.Enabled = false;
+                    if (CourantApplication.ApplicationStatus == clsApplications.enApplicationStatus.New)
+                    {
+                        issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
+
+                        showLicenseToolStripMenuItem.Enabled = false;
+
+                    }
+                    else
+                    {
+                        issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+
+                        //handle License
+                        if (CourantApplication.GetActiveLicenseID() > 0)
+                        {
+
+                            //have License 
+
+                            showLicenseToolStripMenuItem.Enabled = true;
+
+
+                        }
+                        else
+                        {
+                            //does not have License 
+
+                            showLicenseToolStripMenuItem.Enabled = false;
+
+
+                        }
+
+                    }
 
                     break;
 
             }
+
 
 
         }
@@ -310,6 +343,35 @@ namespace DVLD.Applications.Local_Driving_License_Application
             using (frmListAppointments frm = new frmListAppointments((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value, clsTestTypes.enTestType.StreetTest))
             {
                 frm.ShowDialog();
+            }
+        }
+
+        private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+            using (frmIssueDriverLicenseFirstTime frm = new frmIssueDriverLicenseFirstTime(LocalDrivingLicenseApplicationID))
+            {
+
+                frm.ShowDialog();
+
+            }
+             
+           
+            //refresh
+            _ReloadUserList();
+        }
+
+        private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+            int LicenseID = clsLocalDrivingLicenseApplications.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID).GetActiveLicenseID();
+
+
+            using (frmShowLicenseInfo frm = new frmShowLicenseInfo(LicenseID))
+            {
+                
+                frm.ShowDialog();
+
             }
         }
     }

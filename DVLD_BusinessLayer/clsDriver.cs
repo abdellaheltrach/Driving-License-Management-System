@@ -116,5 +116,10 @@ namespace DVLD_BusinessLayer
 
             return false;
         }
+
+        public static DataTable GetDriverLicenses(int DriverID)
+        {
+            return clsLicense.GetDriverLicenses(DriverID);
+        }
     }
 }

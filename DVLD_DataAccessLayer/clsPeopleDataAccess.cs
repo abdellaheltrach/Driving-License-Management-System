@@ -40,8 +40,30 @@ namespace DVLD_DataAccessLayer
 
                     NationalNo = (string)reader["NationalNo"];
                     FirstName = (string)reader["FirstName"];
-                    SecondName = (string)reader["SecondName"];
-                    ThirdName = (string)reader["ThirdName"];
+
+
+                    //SecondName: allows null in database so we should handle null
+
+                    if (reader["SecondName"] != DBNull.Value)
+                    {
+                        ThirdName = (string)reader["SecondName"];
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
+
+
+                    //ThirdName: allows null in database so we should handle null
+                    if (reader["ThirdName"] != DBNull.Value)
+                    {
+                        ThirdName = (string)reader["ThirdName"];
+                    }
+                    else
+                    {
+                        ThirdName = "";
+                    }
+
                     LastName = (string)reader["LastName"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
                     Gendor = (byte)reader["Gendor"];
@@ -67,7 +89,7 @@ namespace DVLD_DataAccessLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally

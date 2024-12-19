@@ -311,5 +311,44 @@ namespace DVLD_DataAccessLayer
             return Result;
         }
 
+        public static bool UpdateStatus(int ApplicationID, short NewStatus)
+        {
+
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"Update  Applications  
+                            set 
+                                ApplicationStatus = @NewStatus, 
+                                LastStatusDate = @LastStatusDate
+                            where ApplicationID=@ApplicationID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            command.Parameters.AddWithValue("@NewStatus", NewStatus);
+            command.Parameters.AddWithValue("LastStatusDate", DateTime.Now);
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
     }
 }

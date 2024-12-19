@@ -188,5 +188,10 @@ namespace DVLD_BusinessLayer
             return clsLicenseClassesDataAccess.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
 
         }
+
+        public static DataTable GetDriverLicenses(int DriverID)
+        {
+            return clsLicenseDataAccess.GetDriverLicenses(DriverID);
+        }
     }
 }

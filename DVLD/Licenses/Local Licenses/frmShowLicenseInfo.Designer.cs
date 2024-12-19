@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlDriverLicenseInfo1 = new DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfo();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pbTestTypeImage = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.pbTestTypeImage = new System.Windows.Forms.PictureBox();
+            this.ctrlDriverLicenseInfo1 = new DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestTypeImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrlDriverLicenseInfo1
-            // 
-            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(12, 176);
-            this.ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
-            this.ctrlDriverLicenseInfo1.Size = new System.Drawing.Size(863, 338);
-            this.ctrlDriverLicenseInfo1.TabIndex = 0;
             // 
             // lblTitle
             // 
@@ -52,6 +45,23 @@
             this.lblTitle.TabIndex = 137;
             this.lblTitle.Text = "Driver License Info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(757, 522);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(114, 37);
+            this.btnClose.TabIndex = 138;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pbTestTypeImage
             // 
@@ -66,21 +76,12 @@
             this.pbTestTypeImage.TabIndex = 136;
             this.pbTestTypeImage.TabStop = false;
             // 
-            // btnClose
+            // ctrlDriverLicenseInfo1
             // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(745, 522);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(126, 37);
-            this.btnClose.TabIndex = 138;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(12, 176);
+            this.ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
+            this.ctrlDriverLicenseInfo1.Size = new System.Drawing.Size(863, 338);
+            this.ctrlDriverLicenseInfo1.TabIndex = 0;
             // 
             // frmShowLicenseInfo
             // 

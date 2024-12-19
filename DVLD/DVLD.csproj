@@ -76,6 +76,12 @@
     <Compile Include="Applications\Local Driving License Application\frmAddUpdateLocalDrivingLicesnseApplication.Designer.cs">
       <DependentUpon>frmAddUpdateLocalDrivingLicesnseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\Local Driving License Application\frmIssueDriverLicenseFirstTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Local Driving License Application\frmIssueDriverLicenseFirstTime.Designer.cs">
+      <DependentUpon>frmIssueDriverLicenseFirstTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\Local Driving License Application\frmLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +107,23 @@
     <Compile Include="Licenses\Local Licenses\Controls\ctrlDriverLicenseInfoWithFilter.Designer.cs">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Licenses\Local Licenses\Controls\ctrlDriverLicenses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\Local Licenses\Controls\ctrlDriverLicenses.Designer.cs">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\Local Licenses\frmShowLicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Licenses\Local Licenses\frmShowLicenseInfo.Designer.cs">
       <DependentUpon>frmShowLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licenses\Local Licenses\frmShowPersonLicenseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licenses\Local Licenses\frmShowPersonLicenseHistory.Designer.cs">
+      <DependentUpon>frmShowPersonLicenseHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FrmLoginScreen.cs">
       <SubType>Form</SubType>
@@ -227,6 +245,9 @@
     <EmbeddedResource Include="Applications\Local Driving License Application\frmAddUpdateLocalDrivingLicesnseApplication.resx">
       <DependentUpon>frmAddUpdateLocalDrivingLicesnseApplication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving License Application\frmIssueDriverLicenseFirstTime.resx">
+      <DependentUpon>frmIssueDriverLicenseFirstTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Applications\Local Driving License Application\frmLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,8 +260,14 @@
     <EmbeddedResource Include="Licenses\Local Licenses\Controls\ctrlDriverLicenseInfoWithFilter.resx">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Local Licenses\Controls\ctrlDriverLicenses.resx">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Local Licenses\frmShowLicenseInfo.resx">
       <DependentUpon>frmShowLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Local Licenses\frmShowPersonLicenseHistory.resx">
+      <DependentUpon>frmShowPersonLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FrmLoginScreen.resx">
       <DependentUpon>FrmLoginScreen.cs</DependentUpon>

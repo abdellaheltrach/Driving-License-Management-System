@@ -45,6 +45,14 @@ namespace DVLD.Applications.Local_Driving_License_Application
             _Mode = enFrmMode.Update;
         }
 
+        void _FillComboBox()
+        {
+            foreach (DataRow row in _licensesClasses.Rows)
+            {
+                cbLicenseClass.Items.Add(row[1].ToString());
+            }
+
+        }
         void _RestDefaultValues()
         {
             if (_Mode == enFrmMode.AddNew)
@@ -73,6 +81,8 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
 
         }
+
+
         void _FillApplicationInfo()
         {
             if (_Mode == enFrmMode.Update)
@@ -96,15 +106,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
 
         }
-        void _FillComboBox()
-        {
-            foreach (DataRow row in _licensesClasses.Rows)
-            {
-                cbLicenseClass.Items.Add(row[1].ToString());
-            }
-
-        }
-        void _FillNewApplicationObject()
+        void _FillApplicationObject()
         {
             if (_Mode == enFrmMode.Update)
             {
@@ -115,15 +117,28 @@ namespace DVLD.Applications.Local_Driving_License_Application
             {
 
                 //fill the application properties
+                _LocalApplication.ApplicantPerson = clsPerson.Find(ctrlPersonCardWithFilter1.ctrlPersonCard1.PersonID);
+
+
+                _LocalApplication.ApplicantPersonID = _LocalApplication.ApplicantPerson.PersonID;
                 _LocalApplication.ApplicationDate = DateTime.Now;
+                _LocalApplication.ApplicationTypeInfo = clsApplicationTypes.Find(_LocalApplication.ApplicationTypeID);
+                _LocalApplication.CreatedByUserInfo = clsUser.FindUserById(clsCurrentUser.CurrentUser.UserID);
+
+
+
+
                 _LocalApplication.ApplicationTypeID = 1;
                 _LocalApplication.ApplicationStatus = (enApplicationStatus)1;
                 _LocalApplication.LastStatusDate = DateTime.Now;
                 _LocalApplication.PaidFees = clsApplicationTypes.Find(1).Fees;
                 _LocalApplication.CreatedByUserID = clsCurrentUser.CurrentUser.UserID;
                 _LocalApplication.LicenseClassID = cbLicenseClass.SelectedIndex + 1;
+                _LocalApplication.LicenseClassesInfo = clsLicenseClasses.Find(_LocalApplication.LicenseClassID);
             }
         }
+
+
         private void frmAddUpdateLocalDrivingLicesnseApplication_Load(object sender, EventArgs e)
         {
 
@@ -206,7 +221,9 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (clsLocalDrivingLicenseApplications.IsNewApplicationRepeated(_LocalApplication.ApplicantPerson.NationalNo, cbLicenseClass.SelectedItem.ToString()))
+                _FillApplicationObject();
+
+            if (clsLocalDrivingLicenseApplications.IsNewApplicationRepeated(_LocalApplication.ApplicantPerson.NationalNo,_LocalApplication.LicenseClassesInfo.ClassName))
             {
                 MessageBox.Show("This person already has an application in progress for the same class.",
                                 "Duplicate Application", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -219,7 +236,6 @@ namespace DVLD.Applications.Local_Driving_License_Application
             {
 
 
-                _FillNewApplicationObject();
 
                 if (_LocalApplication.Save())
                 {
@@ -238,7 +254,7 @@ namespace DVLD.Applications.Local_Driving_License_Application
             {
 
 
-                _FillNewApplicationObject();
+                _FillApplicationObject();
 
 
                 if (_LocalApplication.Save())
