@@ -374,5 +374,18 @@ namespace DVLD.Applications.Local_Driving_License_Application
 
             }
         }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int PersonID = clsPerson.Find((string)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[2].Value).PersonID;
+
+
+            using (frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(PersonID))
+            {
+
+                frm.ShowDialog();
+
+            }
+        }
     }
 }

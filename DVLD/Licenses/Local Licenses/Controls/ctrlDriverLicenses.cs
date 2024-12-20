@@ -1,4 +1,5 @@
-﻿using DVLD_BusinessLayer;
+﻿using DVLD.Licenses.International_Licenses;
+using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,7 +59,7 @@ namespace DVLD.Licenses.Local_Licenses.Controls
         private void _LoadInternationalLicenseInfo()
         {
 
-           // _dtDriverInternationalLicensesHistory = clsDriver.GetInternationalLicenses(_DriverID);
+            _dtDriverInternationalLicensesHistory = clsDriver.GetDriverInternationalLicenses(_DriverID);
 
 
             dgvInternationalLicensesHistory.DataSource = _dtDriverInternationalLicensesHistory;
@@ -88,5 +89,50 @@ namespace DVLD.Licenses.Local_Licenses.Controls
         }
 
 
+        public void LoadInfoByDriverID(int DriverID)
+        {
+            _DriverID = DriverID;
+            _Driver = clsDriver.FindByDriverID(_DriverID);
+
+            _LoadLocalLicenseInfo();
+            _LoadInternationalLicenseInfo();
+
+        }
+
+
+        public void LoadInfoByPersonID(int PersonID)
+        {
+
+            _Driver = clsDriver.FindByPersonID(PersonID);
+            if (_Driver != null)
+            {
+                _DriverID = clsDriver.FindByPersonID(PersonID).DriverID;
+            }
+
+            _LoadLocalLicenseInfo();
+            _LoadInternationalLicenseInfo();
+        }
+
+        private void showLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LicenseID = (int)dgvLocalLicensesHistory.CurrentRow.Cells[0].Value;
+            using (frmShowLicenseInfo frm = new frmShowLicenseInfo(LicenseID))
+            {
+                frm.ShowDialog();
+            }
+                
+            
+        }
+
+        private void InternationalLicenseHistorytoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int InternationalLicenseID = (int)dgvInternationalLicensesHistory.CurrentRow.Cells[0].Value;
+            using (frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo(InternationalLicenseID))
+            {
+                frm.ShowDialog();
+
+            }
+
+        }
     }
 }

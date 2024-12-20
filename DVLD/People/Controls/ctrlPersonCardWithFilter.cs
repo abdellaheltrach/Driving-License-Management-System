@@ -23,7 +23,7 @@ namespace DVLD.People.Controls
         {
             cbFilterBy.SelectedIndex = 0;
             txtFilterValue.Text = personID.ToString();
-            //gbFilters.Enabled = true;
+            btnFind_Click(null, null);
         }
 
         public void LoadPersonInfo(string personNationalNO)
