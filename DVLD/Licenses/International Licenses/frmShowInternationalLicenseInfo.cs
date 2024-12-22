@@ -23,5 +23,10 @@ namespace DVLD.Licenses.International_Licenses
         {
             ctrlDriverInternationalLicenseInfo1.LoadInfo(_DriverInternationalLicenseID);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -40,6 +40,23 @@ namespace DVLD.Licenses.Local_Licenses.Controls
             InitializeComponent();
         }
 
+        public void LoadLicenseInfo(int LicenseID)
+        {
+
+
+            this._licenseID = LicenseID;
+
+            txtLicenseID.Text = LicenseID.ToString();
+            ctrlDriverLicenseInfo1.LoadInfo(LicenseID);
+
+
+            if (OnLicenseSelected != null )
+                // Raise the event with a parameter
+                OnLicenseSelected(_licenseID);
+
+
+        }
+
         private void txtLicenseID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -51,13 +68,14 @@ namespace DVLD.Licenses.Local_Licenses.Controls
         private void btnFind_Click(object sender, EventArgs e)
         {
 
+
             //check if the txt box empty
             if (txtLicenseID.Text.Trim() == string.Empty)
                 return;
 
-            int licenseID = int.Parse(txtLicenseID.Text.Trim());
+            _licenseID = int.Parse(txtLicenseID.Text.Trim());
 
-            if (!clsLicense.IsLicenseExists(licenseID) == true)
+            if (!clsLicense.IsLicenseExists(_licenseID) == true)
             {
                 MessageBox.Show($"No user found with the License ID: {txtLicenseID.Text.Trim()}",
                 "User Not Found",
@@ -66,9 +84,15 @@ namespace DVLD.Licenses.Local_Licenses.Controls
                 return;
             }
 
-            this._licenseID = licenseID;
 
-            ctrlDriverLicenseInfo1.LoadInfo(licenseID);
+            ctrlDriverLicenseInfo1.LoadInfo(_licenseID);
+
+            LoadLicenseInfo(_licenseID);
+        }
+
+        private void txtLicenseID_Validating(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

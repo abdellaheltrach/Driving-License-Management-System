@@ -28,20 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlDriverLicenseInfo1 = new DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfo();
             this.gbFilters = new System.Windows.Forms.GroupBox();
             this.btnFind = new System.Windows.Forms.Button();
             this.txtLicenseID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ctrlDriverLicenseInfo1 = new DVLD.Licenses.Local_Licenses.Controls.ctrlDriverLicenseInfo();
             this.gbFilters.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ctrlDriverLicenseInfo1
-            // 
-            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(3, 85);
-            this.ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
-            this.ctrlDriverLicenseInfo1.Size = new System.Drawing.Size(863, 338);
-            this.ctrlDriverLicenseInfo1.TabIndex = 0;
             // 
             // gbFilters
             // 
@@ -79,6 +72,7 @@
             this.txtLicenseID.Size = new System.Drawing.Size(435, 30);
             this.txtLicenseID.TabIndex = 17;
             this.txtLicenseID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLicenseID_KeyPress);
+            this.txtLicenseID.Validating += new System.ComponentModel.CancelEventHandler(this.txtLicenseID_Validating);
             // 
             // label1
             // 
@@ -90,6 +84,13 @@
             this.label1.Size = new System.Drawing.Size(115, 25);
             this.label1.TabIndex = 19;
             this.label1.Text = "LicenseID:";
+            // 
+            // ctrlDriverLicenseInfo1
+            // 
+            this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(3, 85);
+            this.ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
+            this.ctrlDriverLicenseInfo1.Size = new System.Drawing.Size(863, 338);
+            this.ctrlDriverLicenseInfo1.TabIndex = 0;
             // 
             // ctrlDriverLicenseInfoWithFilter
             // 
@@ -108,9 +109,9 @@
         #endregion
 
         private ctrlDriverLicenseInfo ctrlDriverLicenseInfo1;
-        private System.Windows.Forms.GroupBox gbFilters;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtLicenseID;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.GroupBox gbFilters;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DVLD.Applications.Applications_types;
+using DVLD.Applications.International_License_Application;
 using DVLD.Applications.Local_Driving_License_Application;
 using DVLD.Login;
 using DVLD.test_types;
@@ -105,5 +106,24 @@ namespace DVLD
             }
         }
 
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmAddUpdateLocalDrivingLicesnseApplication frm = new frmAddUpdateLocalDrivingLicesnseApplication())
+            {
+                frm.ShowDialog();
+
+
+            }
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmNewInternationalLicenseApplication frm = new frmNewInternationalLicenseApplication())
+            {
+                frm.ShowDialog();
+
+
+            }
+        }
     }
 }

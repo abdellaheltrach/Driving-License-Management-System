@@ -39,7 +39,7 @@
             // 
             this.ctrlDriverInternationalLicenseInfo1.Location = new System.Drawing.Point(-4, 179);
             this.ctrlDriverInternationalLicenseInfo1.Name = "ctrlDriverInternationalLicenseInfo1";
-            this.ctrlDriverInternationalLicenseInfo1.Size = new System.Drawing.Size(866, 270);
+            this.ctrlDriverInternationalLicenseInfo1.Size = new System.Drawing.Size(914, 270);
             this.ctrlDriverInternationalLicenseInfo1.TabIndex = 0;
             // 
             // lblTitle
@@ -73,19 +73,21 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(722, 467);
+            this.btnClose.Location = new System.Drawing.Point(764, 458);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 37);
             this.btnClose.TabIndex = 141;
             this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmShowInternationalLicenseInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 509);
+            this.ClientSize = new System.Drawing.Size(909, 509);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pbTestTypeImage);
