@@ -99,6 +99,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pbPersonImage);
             this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowPersonLicenseHistory";
             this.Text = "frmShowPersonLicenseHistory";
             this.Load += new System.EventHandler(this.frmShowPersonLicenseHistory_Load);

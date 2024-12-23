@@ -92,6 +92,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pbTestTypeImage);
             this.Controls.Add(this.ctrlDriverInternationalLicenseInfo1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowInternationalLicenseInfo";
             this.Text = "frmShowInternationalLicenseInfo";
             this.Load += new System.EventHandler(this.frmShowInternationalLicenseInfo_Load);
