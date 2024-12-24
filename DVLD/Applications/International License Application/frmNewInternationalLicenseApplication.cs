@@ -27,7 +27,16 @@ namespace DVLD.Applications.International_License_Application
         {
             InitializeComponent();
         }
+        private void _FillTextBoxes()
+        {
+            lblApplicationDate.Text = DateTime.Now.ToString("dd/MMM/yyyy");
+            lblIssueDate.Text = lblApplicationDate.Text;
+            lblExpirationDate.Text = DateTime.Now.AddYears(1).ToString("dd/MMM/yyyy");//add one year.
+            lblFees.Text = clsApplicationTypes.Find((int)clsApplications.enApplicationType.NewInternationalLicense).Fees.ToString();
+            lblCreatedByUser.Text = clsCurrentUser.CurrentUser.UserName;
 
+
+        }
 
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int obj)
         {
@@ -88,11 +97,7 @@ namespace DVLD.Applications.International_License_Application
 
         private void frmNewInternationalLicenseApplication_Load(object sender, EventArgs e)
         {
-            lblApplicationDate.Text = DateTime.Now.ToString("dd/MMM/yyyy");
-            lblIssueDate.Text = lblApplicationDate.Text;
-            lblExpirationDate.Text = DateTime.Now.AddYears(1).ToString("dd/MMM/yyyy");//add one year.
-            lblFees.Text = clsApplicationTypes.Find((int)clsApplications.enApplicationType.NewInternationalLicense).Fees.ToString();
-            lblCreatedByUser.Text = clsCurrentUser.CurrentUser.UserName;
+            _FillTextBoxes();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -167,5 +172,12 @@ namespace DVLD.Applications.International_License_Application
             ctrlDriverLicenseInfoWithFilter1.gbFilters.Enabled = false;
             llShowLicenseInfo.Enabled = true;
         }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using DVLD_DataAccessLayer;
+﻿using DVLD_Buisness;
+using DVLD_DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -193,5 +194,63 @@ namespace DVLD_BusinessLayer
         {
             return clsLicenseDataAccess.GetDriverLicenses(DriverID);
         }
+
+
+
+        public clsLicense RenewLicense(string Notes, int CreatedByUserID)
+        {
+
+            //First Create Application 
+            clsApplications Application = new clsApplications();
+
+            Application.ApplicantPersonID = this.DriverInfo.PersonID;
+            Application.ApplicantPerson = clsPerson.Find(Application.ApplicantPersonID);
+            Application.ApplicationDate = DateTime.Now;
+            Application.ApplicationTypeID = (int)clsApplications.enApplicationType.RenewDrivingLicenseService;
+            Application.ApplicationStatus = clsApplications.enApplicationStatus.Completed;
+            Application.LastStatusDate = DateTime.Now;
+            Application.PaidFees = clsApplicationTypes.Find((int)clsApplications.enApplicationType.RenewDrivingLicenseService).Fees;
+            Application.CreatedByUserID = CreatedByUserID;
+
+            if (!Application.Save())
+            {
+                return null;
+            }
+
+            clsLicense NewLicense = new clsLicense();
+
+            NewLicense.ApplicationID = Application.ApplicationID;
+            NewLicense.DriverID = this.DriverID;
+            NewLicense.LicenseClass = this.LicenseClass;
+            NewLicense.IssueDate = DateTime.Now;
+
+            int DefaultValidityLength = this.LicenseClassIfo.DefaultValidityLength;
+
+            NewLicense.ExpirationDate = DateTime.Now.AddYears(DefaultValidityLength);
+            NewLicense.Notes = Notes;
+            NewLicense.PaidFees = this.LicenseClassIfo.ClassFees;
+            NewLicense.IsActive = true;
+            NewLicense.IssueReason = clsLicense.enIssueReason.Renew;
+            NewLicense.CreatedByUserID = CreatedByUserID;
+
+
+            if (!NewLicense.Save())
+            {
+                return null;
+            }
+
+            //we need to deactivate the old License.
+            DeactivateCurrentLicense();
+
+            return NewLicense;
+        }
+
+
+        public bool DeactivateCurrentLicense()
+        {
+            return (clsLicenseDataAccess.DeactivateLicense(this.LicenseID));
+        }
+
+
     }
 }

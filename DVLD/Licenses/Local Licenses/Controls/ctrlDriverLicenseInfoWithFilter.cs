@@ -25,6 +25,12 @@ namespace DVLD.Licenses.Local_Licenses.Controls
             }
         }
 
+        public void SetFocusOnFilterTextBox()
+        {
+                txtLicenseID.Focus(); 
+        }
+
+
         private int _licenseID;
 
         public int LicenseID 

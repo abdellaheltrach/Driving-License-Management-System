@@ -80,6 +80,7 @@
             this.lblTitle.TabIndex = 124;
             this.lblTitle.Text = "International License Application";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // gpApplicationInfo
             // 
@@ -453,7 +454,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNewInternationalLicenseApplication";
             this.Text = "frmNewInternationalLicenseApplication";
-            this.Load += new System.EventHandler(this.frmNewInternationalLicenseApplication_Load);
+   //         this.Activated += new System.EventHandler(this.frmNewInternationalLicenseApplication_Activated);
             this.gpApplicationInfo.ResumeLayout(false);
             this.gpApplicationInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
