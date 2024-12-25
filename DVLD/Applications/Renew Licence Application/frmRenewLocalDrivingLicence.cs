@@ -50,17 +50,18 @@ namespace DVLD.Applications.Renew_Licence_Application
                 return;
 
             }
-            else if (_SelectedLicenseInfo.ExpirationDate < DateTime.Now)
+            else if (!(_SelectedLicenseInfo.ExpirationDate < DateTime.Now))
             {
-                MessageBox.Show("Selected License is not yet expired and still useable, it will expire on: " + _SelectedLicenseInfo.ExpirationDate.ToString("dd/MMM/yyyy"), "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selected License is not yet expired, it will expire on: " + _SelectedLicenseInfo.ExpirationDate.ToString("dd/MMM/yyyy"), "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnRenewLicense.Enabled = false;
                 llShowLicenseHistory.Enabled = true; //enable the user to check the person licenses history
                 llShowLicenseInfo.Enabled = false;
                 return;
             }
-            else if (_SelectedLicenseInfo.IsActive)
+            else if (!_SelectedLicenseInfo.IsActive)
             {
-                MessageBox.Show("Selected License still Active and useable", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The selected license is invalid because it has been replaced. Please select a valid license.",
+                                "Action Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnRenewLicense.Enabled = false;
                 llShowLicenseHistory.Enabled = true; //enable the user to check the person licenses history
                 llShowLicenseInfo.Enabled = false;

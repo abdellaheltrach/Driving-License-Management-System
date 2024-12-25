@@ -3,26 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\applications\\renew licence application\\frmrenewlocaldrivinglicence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\applications\\replacelostordamagedlicense\\frmreplacelostordamagedlicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\replacelostordamagedlicense\\frmreplacelostordamagedlicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\applications\\replacelostordamagedlicense\\frmreplacelostordamagedlicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\replacelostordamagedlicense\\frmreplacelostordamagedlicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\applications\\renew licence application\\frmrenewlocaldrivinglicence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\renew licence application\\frmrenewlocaldrivinglicence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\applications\\renew licence application\\frmrenewlocaldrivinglicence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:applications\\renew licence application\\frmrenewlocaldrivinglicence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\licenses\\local licenses\\controls\\ctrldriverlicenseinfowithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:licenses\\local licenses\\controls\\ctrldriverlicenseinfowithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\licenses\\local licenses\\controls\\ctrldriverlicenseinfowithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:licenses\\local licenses\\controls\\ctrldriverlicenseinfowithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FF45A50A-05BD-4219-846F-A6403F2A923E}|DVLD.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5168AD0-0EBC-46E6-8E69-1B9E5A33CA40}|..\\DVLD_BusinessLayer\\DVLD_BusinessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_businesslayer\\clslicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDBAA85D-6CB0-4FCA-ADC0-8C432296F436}|..\\DVLD_DataAccessLayer\\DVLD_DataAccessLayer.csproj|c:\\users\\abdellah\\desktop\\programming\\projects\\full project\\dvld project\\driving-license-management-system\\dvld_dataaccesslayer\\clslicensedataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -44,76 +45,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ctrlDriverLicenseInfoWithFilter.cs",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "RelativeDocumentMoniker": "Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "RelativeToolTip": "Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAADwvyAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAADwv5QAAABwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T14:11:37.115Z",
+              "WhenOpened": "2024-12-24T22:44:26.106Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ctrlDriverLicenseInfoWithFilter.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "RelativeDocumentMoniker": "Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs [Design]",
-              "RelativeToolTip": "Licenses\\Local Licenses\\Controls\\ctrlDriverLicenseInfoWithFilter.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T14:07:06.567Z",
+              "WhenOpened": "2024-12-24T22:44:21.558Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "clsLicenseDataAccess.cs",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsLicenseDataAccess.cs",
-              "RelativeDocumentMoniker": "..\\DVLD_DataAccessLayer\\clsLicenseDataAccess.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_DataAccessLayer\\clsLicenseDataAccess.cs",
-              "RelativeToolTip": "..\\DVLD_DataAccessLayer\\clsLicenseDataAccess.cs",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAAwP8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T12:52:09.003Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "clsLicense.cs",
               "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsLicense.cs",
               "RelativeDocumentMoniker": "..\\DVLD_BusinessLayer\\clsLicense.cs",
               "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD_BusinessLayer\\clsLicense.cs",
               "RelativeToolTip": "..\\DVLD_BusinessLayer\\clsLicense.cs",
-              "ViewState": "AgIAAMcAAAAAAAAAAAAAwM4AAABWAAAAAAAAAA==",
+              "ViewState": "AgIAAOwAAAAAAAAAAADwv/oAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T22:08:12.669Z"
+              "WhenOpened": "2024-12-24T22:33:07.04Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "frmRenewLocalDrivingLicence.cs",
               "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
               "RelativeDocumentMoniker": "Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs*",
-              "RelativeToolTip": "Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs*",
-              "ViewState": "AgIAAJIAAAAAAAAAAADwv54AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
+              "RelativeToolTip": "Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAHcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T21:48:34.293Z",
+              "WhenOpened": "2024-12-24T18:33:33.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmRenewLocalDrivingLicence.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
-              "RelativeDocumentMoniker": "Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs",
-              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs [Design]*",
-              "RelativeToolTip": "Applications\\Renew Licence Application\\frmRenewLocalDrivingLicence.cs [Design]*",
+              "Title": "frmReplaceLostOrDamagedLicenseApplication.cs",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs",
+              "RelativeDocumentMoniker": "Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs*",
+              "RelativeToolTip": "Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs*",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAwBkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T21:17:20.396Z",
+              "WhenOpened": "2024-12-24T18:01:16.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmReplaceLostOrDamagedLicenseApplication.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs",
+              "RelativeDocumentMoniker": "Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\ABDELLAH\\Desktop\\programming\\projects\\Full Project\\DVLD Project\\Driving-License-Management-System\\DVLD\\Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs [Design]*",
+              "RelativeToolTip": "Applications\\ReplaceLostOrDamagedLicense\\frmReplaceLostOrDamagedLicenseApplication.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T17:51:40.174Z",
               "EditorCaption": " [Design]"
             }
           ]

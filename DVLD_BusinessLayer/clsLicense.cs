@@ -251,6 +251,55 @@ namespace DVLD_BusinessLayer
             return (clsLicenseDataAccess.DeactivateLicense(this.LicenseID));
         }
 
+        public clsLicense Replace(enIssueReason IssueReason, int CreatedByUserID)
+        {
 
+
+            //We need to add a new record for the new liscense as an application for renew the license
+            clsApplications Application = new clsApplications();
+
+            Application.ApplicantPersonID = this.DriverInfo.PersonID;
+            Application.ApplicantPerson = clsPerson.Find(Application.ApplicantPersonID);
+            Application.ApplicationDate = DateTime.Now;
+
+            Application.ApplicationTypeID = (IssueReason == enIssueReason.DamagedReplacement) ?
+                (int)clsApplications.enApplicationType.ReplacementForADamagedDrivingLicense :
+                (int)clsApplications.enApplicationType.ReplacementForALostDrivingLicense;
+
+            Application.ApplicationStatus = clsApplications.enApplicationStatus.Completed;
+            Application.LastStatusDate = DateTime.Now;
+            Application.PaidFees = clsApplicationTypes.Find(Application.ApplicationTypeID).Fees;
+            Application.CreatedByUserID = CreatedByUserID;
+
+            if (!Application.Save())
+            {
+                return null;
+            }
+
+            clsLicense NewLicense = new clsLicense();
+
+            NewLicense.ApplicationID = Application.ApplicationID;
+            NewLicense.DriverID = this.DriverID;
+            NewLicense.LicenseClass = this.LicenseClass;
+            NewLicense.IssueDate = DateTime.Now;
+            NewLicense.ExpirationDate = this.ExpirationDate;
+            NewLicense.Notes = this.Notes;
+            NewLicense.PaidFees = 0;// no fees for the license because it's a replacement.
+            NewLicense.IsActive = true;
+            NewLicense.IssueReason = IssueReason;
+            NewLicense.CreatedByUserID = CreatedByUserID;
+
+
+
+            if (!NewLicense.Save())
+            {
+                return null;
+            }
+
+            //we need to deactivate the old License.
+            DeactivateCurrentLicense();
+
+            return NewLicense;
+        }
     }
 }

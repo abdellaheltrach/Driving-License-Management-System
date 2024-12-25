@@ -47,3 +47,4 @@ C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.International_License_Application.frmNewInternationalLicenseApplication.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.International_License_Application.frmListInternationalLicenseApplications.resources
 C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.Renew_Licence_Application.frmRenewLocalDrivingLicence.resources
+C:\Users\ABDELLAH\Desktop\programming\projects\Full Project\DVLD Project\Driving-License-Management-System\DVLD\obj\Debug\DVLD.Applications.ReplaceLostOrDamagedLicense.frmReplaceLostOrDamagedLicenseApplication.resources
