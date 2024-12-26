@@ -124,6 +124,12 @@
     <Compile Include="Applications\Rlease Detained License\frmListDetainedLicenses.Designer.cs">
       <DependentUpon>frmListDetainedLicenses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.Designer.cs">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsUtil.cs" />
     <Compile Include="Licenses\International Licenses\Control\ctrlDriverInternationalLicenseInfo.cs">
       <SubType>UserControl</SubType>
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Rlease Detained License\frmListDetainedLicenses.resx">
       <DependentUpon>frmListDetainedLicenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Rlease Detained License\frmReleaseDetainedLicenseApplication.resx">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\International Licenses\Control\ctrlDriverInternationalLicenseInfo.resx">
       <DependentUpon>ctrlDriverInternationalLicenseInfo.cs</DependentUpon>

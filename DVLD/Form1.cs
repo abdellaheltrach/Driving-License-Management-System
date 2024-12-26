@@ -174,5 +174,20 @@ namespace DVLD
 
             }
         }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmReleaseDetainedLicenseApplication frm = new frmReleaseDetainedLicenseApplication())
+            {
+                frm.ShowDialog();
+
+
+            }
+        }
     }
 }
