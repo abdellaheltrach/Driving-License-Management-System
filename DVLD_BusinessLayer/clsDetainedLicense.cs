@@ -166,5 +166,11 @@ namespace DVLD_BusinessLayer
         {
             return clsDetainedLicenseDataAccess.IsLicenseDetained(LicenseID);
         }
+
+        public bool ReleaseDetainedLicense(int ReleasedByUserID, int ReleaseApplicationID)
+        {
+            return clsDetainedLicenseDataAccess.ReleaseDetainedLicense(this.DetainID,
+                   ReleasedByUserID, ReleaseApplicationID);
+        }
     }
 }
