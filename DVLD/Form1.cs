@@ -4,6 +4,7 @@ using DVLD.Applications.Local_Driving_License_Application;
 using DVLD.Applications.Renew_Licence_Application;
 using DVLD.Applications.ReplaceLostOrDamagedLicense;
 using DVLD.Applications.Rlease_Detained_License;
+using DVLD.Licenses.Detain_License;
 using DVLD.Login;
 using DVLD.test_types;
 using DVLD.Users;
@@ -177,12 +178,27 @@ namespace DVLD
 
         private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (frmDetainLicense frm = new frmDetainLicense())
+            {
+                frm.ShowDialog();
 
+
+            }
         }
 
         private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (frmReleaseDetainedLicenseApplication frm = new frmReleaseDetainedLicenseApplication())
+            {
+                frm.ShowDialog();
+
+
+            }
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmDriversList frm = new frmDriversList())
             {
                 frm.ShowDialog();
 

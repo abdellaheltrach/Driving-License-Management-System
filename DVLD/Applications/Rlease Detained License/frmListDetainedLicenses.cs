@@ -1,4 +1,5 @@
-﻿using DVLD.Licenses.Local_Licenses;
+﻿using DVLD.Licenses.Detain_License;
+using DVLD.Licenses.Local_Licenses;
 using DVLD_BusinessLayer;
 using System;
 using System.Collections.Generic;
@@ -242,6 +243,8 @@ namespace DVLD.Applications.Rlease_Detained_License
             {
                 frm.ShowDialog();
             }
+            _ReloadDataGridView();
+
         }
 
         private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -252,6 +255,19 @@ namespace DVLD.Applications.Rlease_Detained_License
             {
                 frm.ShowDialog();
             }
+            _ReloadDataGridView();
+        }
+
+        private void btnDetainLicense_Click(object sender, EventArgs e)
+        {
+            using (frmDetainLicense frm = new frmDetainLicense())
+            {
+                frm.ShowDialog();
+
+
+            }
+            _ReloadDataGridView();
+
         }
     }
 
