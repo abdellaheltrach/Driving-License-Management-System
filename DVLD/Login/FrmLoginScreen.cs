@@ -3,6 +3,10 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using DVLD.Users;
+using Microsoft.Win32;
+
+
+
 
 namespace DVLD.Login
 {
@@ -20,37 +24,62 @@ namespace DVLD.Login
 
         private void _SaveLoginDetails(string username, string password)
         {
-            string filePath = "LoginDetails.txt";
+            const string registryPath = @"SOFTWARE\DVLD_PROJECT\Credentials";
+
             if (chkRememberMe.Checked)
             {
-                
-                File.WriteAllText(filePath, $"{username}\n{password}");
+                // Save login details in the Windows registry
+                RegistryKey key = Registry.CurrentUser.CreateSubKey(registryPath);
+                if (key != null)
+                {
+                    key.SetValue("Username", username);
+                    key.SetValue("Password", password);
+                    key.Close();
+                }
             }
             else
             {
-                File.WriteAllText(filePath,"");
+                // Clear the registry values
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(registryPath, true);
+                if (key != null)
+                {
+                    key.DeleteValue("Username", false);
+                    key.DeleteValue("Password", false);
+                    key.Close();
+                }
             }
-
         }
 
         private void _LoadLoginDetails()
         {
-            string filePath = "LoginDetails.txt";
-            if (File.Exists(filePath))
+            const string registryPath = @"SOFTWARE\DVLD_PROJECT\Credentials";
+
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(registryPath);
+            if (key != null)
             {
-                string[] lines = File.ReadAllLines(filePath);
-                if (lines.Length >= 2)
+                string username = key.GetValue("Username", string.Empty) as string;
+                string password = key.GetValue("Password", string.Empty) as string;
+
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                 {
-                    txtUserName.Text = lines[0];  // Set the saved username
-                    txtPassword.Text = lines[1];  // Set the saved password
+                    txtUserName.Text = username;
+                    txtPassword.Text = password;
                     chkRememberMe.Checked = true;
                 }
-                else 
+                else
                 {
                     txtUserName.Text = string.Empty;
                     txtPassword.Text = string.Empty;
                     chkRememberMe.Checked = false;
                 }
+
+                key.Close();
+            }
+            else
+            {
+                txtUserName.Text = string.Empty;
+                txtPassword.Text = string.Empty;
+                chkRememberMe.Checked = false;
             }
         }
 
