@@ -99,7 +99,7 @@ namespace DVLD.Tests
             lblTitle.Text = lblTitle.Text + "  Appointments";
 
             lblLocalDrivingLicenseAppID.Text = _TestAppointment.LocalDrivingLicenseApplicationID.ToString();
-            lblDrivingClass.Text = clsLicenseClasses.Find((int)_TestAppointment.TestTypeID).ClassName.Substring(10);
+            lblDrivingClass.Text = _TestAppointment.LocalDrivingLicenseApplicationInfo.LicenseClassesInfo.ClassName;
             lblFullName.Text = _TestAppointment.LocalDrivingLicenseApplicationInfo.ApplicantPerson.FullName;
             lblTrial.Text = clsTestAppointment.CountTestTrails(this._TestAppointment.LocalDrivingLicenseApplicationID, clsTestTypes.FindById(_TestType).TestTypeTitle).ToString();
             dtpTestDate.Value = _TestAppointment.AppointmentDate;
@@ -113,7 +113,7 @@ namespace DVLD.Tests
 
                 lblRetakeAppFees.Text = "0";
                 lblRetakeTestAppID.Text = "N/A";
-                lblTotalFees.Text = ((int.Parse(lblFees.Text) + int.Parse(lblRetakeAppFees.Text)).ToString());
+                lblTotalFees.Text = (float.Parse(lblFees.Text) + float.Parse(lblRetakeAppFees.Text)).ToString();
                 gbRetakeTestInfo.Enabled = false;
 
             }
@@ -121,9 +121,9 @@ namespace DVLD.Tests
             {
                 //set retake test info
 
-                lblRetakeAppFees.Text = clsApplicationTypes.Find("Retake Test").Fees.ToString();
+                lblRetakeAppFees.Text = clsApplicationTypes.Find((int)clsApplications.enApplicationType.RetakeTest).Fees.ToString();
                 lblRetakeTestAppID.Text = _TestAppointment.RetakeTestApplicationID.ToString();
-                lblTotalFees.Text = ((int.Parse(lblFees.Text) + int.Parse(lblRetakeAppFees.Text)).ToString());
+                lblTotalFees.Text = (float.Parse(lblFees.Text) + float.Parse(lblRetakeAppFees.Text)).ToString();
                 gbRetakeTestInfo.Enabled = true;
             }
             
@@ -143,10 +143,10 @@ namespace DVLD.Tests
             lblTitle.Text = lblTitle.Text + "  Appointment";
 
             lblLocalDrivingLicenseAppID.Text= _localDrivingLicenseApplication.LocalDrivingLicenseApplicationsID.ToString();
-            lblDrivingClass.Text = clsLicenseClasses.Find(_localDrivingLicenseApplication.LicenseClassID).ClassName.Substring(10);
+            lblDrivingClass.Text = _localDrivingLicenseApplication.LicenseClassesInfo.ClassName;
             lblFullName.Text= _localDrivingLicenseApplication.ApplicantPerson.FullName;
             lblTrial.Text = clsTestAppointment.CountTestTrails(this._localDrivingLicenseApplication.LocalDrivingLicenseApplicationsID,clsTestTypes.FindById(_TestType).TestTypeTitle).ToString();
-            dtpTestDate.Value = DateTime.Now.AddDays(7);
+            dtpTestDate.Value = DateTime.Now.AddDays(1);
             dtpTestDate.MinDate = DateTime.Now; 
             lblFees.Text = clsTestTypes.FindById(_TestType).TestTypeFees.ToString();
 
@@ -157,7 +157,7 @@ namespace DVLD.Tests
 
                 lblRetakeAppFees.Text = "0";
                 lblRetakeTestAppID.Text = "N/A";
-                lblTotalFees.Text = ((int.Parse(lblFees.Text) + int.Parse(lblRetakeAppFees.Text)).ToString());
+                lblTotalFees.Text = (float.Parse(lblFees.Text) + float.Parse(lblRetakeAppFees.Text)).ToString();
                 gbRetakeTestInfo.Enabled = false;
 
             }
@@ -165,9 +165,9 @@ namespace DVLD.Tests
             {
                 //set retake test info
 
-                lblRetakeAppFees.Text = clsApplicationTypes.Find("Retake Test").Fees.ToString();
+                lblRetakeAppFees.Text = clsApplicationTypes.Find((int)clsApplications.enApplicationType.RetakeTest).Fees.ToString();
                 lblRetakeTestAppID.Text = "N/A";
-                lblTotalFees.Text = ((int.Parse(lblFees.Text)+int.Parse(lblRetakeAppFees.Text)).ToString());
+                lblTotalFees.Text = (float.Parse(lblFees.Text)+float.Parse(lblRetakeAppFees.Text)).ToString();
                 gbRetakeTestInfo.Enabled = true;
             }
 

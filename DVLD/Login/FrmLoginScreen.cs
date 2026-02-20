@@ -12,7 +12,6 @@ namespace DVLD.Login
 {
     public partial class FrmLoginScreen : Form
     {
-        private clsUser _userService;
 
         public FrmLoginScreen()
         {

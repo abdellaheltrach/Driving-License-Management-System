@@ -401,7 +401,7 @@ namespace DVLD
                 errorProvider1.SetError(txtPhone, "This field is required!");
             }
             // Check if the input contains only digits
-            else if (!int.TryParse(txtPhone.Text.Trim(), out _))  // Attempt to parse as integer
+            else if (!txtPhone.Text.Trim().All(char.IsDigit))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtPhone, "Only digits are allowed in the phone number!");

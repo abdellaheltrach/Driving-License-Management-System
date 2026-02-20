@@ -124,7 +124,7 @@ namespace DVLD
             else
                 _dtAllDrivers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
 
-            lblRecordsCount.Text = _dtAllDrivers.Rows.Count.ToString();
+            lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
         }
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)

@@ -59,7 +59,6 @@ namespace DVLD_BusinessLayer
 
 
         }
-        private enApplicationType applicationType;
 
         public enum enApplicationStatus { New=1 , Completed = 2 , Cancelled = 3 }
 

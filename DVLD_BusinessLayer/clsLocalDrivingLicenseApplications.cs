@@ -13,8 +13,8 @@ namespace DVLD_BusinessLayer
         public int LicenseClassID { get; set; }
         public clsLicenseClasses LicenseClassesInfo;
 
-        public enum enMode { AddNew, Update }
-        public enMode Mode;
+        public new enum enMode { AddNew, Update }
+        public new enMode Mode;
 
         // Private constructor
         private clsLocalDrivingLicenseApplications(int localDrivingLicenseApplicationsID, int applicationID, int licenseClassID,
@@ -139,7 +139,7 @@ namespace DVLD_BusinessLayer
             );
         }
 
-        public bool Save()
+        public new bool Save()
         {
 
             //Because of inheritance first we call the save method in the base class,

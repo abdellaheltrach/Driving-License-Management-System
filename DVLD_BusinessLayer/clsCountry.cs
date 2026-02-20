@@ -36,8 +36,6 @@ namespace DVLD_BusinessLayer
         {
 
             string CountryName = "";
-            DateTime DateOfBirth = DateTime.Now;
-            int CountryID = -1;
 
             if (clsCountryDataAccess.GetCountryInfoByID(ID, ref CountryName))
 

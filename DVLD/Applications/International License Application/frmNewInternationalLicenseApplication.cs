@@ -21,7 +21,6 @@ namespace DVLD.Applications.International_License_Application
         private clsLicense _LicenseInfo;
 
         private int _InternationalLicenseID = -1;
-        private clsInternationalLicense _InternationalLicenseInfo ;
 
         public frmNewInternationalLicenseApplication()
         {

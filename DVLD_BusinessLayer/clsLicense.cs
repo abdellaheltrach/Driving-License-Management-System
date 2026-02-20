@@ -103,7 +103,7 @@ namespace DVLD_BusinessLayer
         {
             //call DataAccess Layer 
 
-            return clsLicenseDataAccess.UpdateLicense(this.ApplicationID, this.LicenseID, this.DriverID, this.LicenseClass,
+            return clsLicenseDataAccess.UpdateLicense(this.LicenseID, this.ApplicationID, this.DriverID, this.LicenseClass,
                this.IssueDate, this.ExpirationDate, this.Notes, this.PaidFees,
                this.IsActive, (byte)this.IssueReason, this.CreatedByUserID);
         }

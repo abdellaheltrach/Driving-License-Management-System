@@ -11,8 +11,8 @@ namespace DVLD_BusinessLayer
 {
     public class clsInternationalLicense : clsApplications
     {
-        public enum enMode { AddNew = 0, Update = 1 };
-        public enMode Mode = enMode.AddNew;
+        public new enum enMode { AddNew = 0, Update = 1 };
+        public new enMode Mode = enMode.AddNew;
 
         public clsDriver DriverInfo;
         public int InternationalLicenseID { set; get; }
@@ -97,7 +97,7 @@ namespace DVLD_BusinessLayer
                this.IsActive, this.CreatedByUserID);
         }
 
-        public static clsInternationalLicense Find(int InternationalLicenseID)
+        public new static clsInternationalLicense Find(int InternationalLicenseID)
         {
             int ApplicationID = -1;
             int DriverID = -1; int IssuedUsingLocalLicenseID = -1;
@@ -135,7 +135,7 @@ namespace DVLD_BusinessLayer
 
         }
 
-        public bool Save()
+        public new bool Save()
         {
 
             //Because of inheritance first we call the save method in the base class,
