@@ -223,7 +223,7 @@ namespace DVLD_BusinessLayer
 
         public bool SetComplete()
         {
-            return clsLocalDrivingLicenseApplicationsDataAccess.UpdateStatus(ApplicationID, 3);
+            return clsLocalDrivingLicenseApplicationsDataAccess.UpdateStatus(ApplicationID, 2);
         }
 
         public int IssueLicenseForTheFirtTime(string Notes, int CreatedByUserID)

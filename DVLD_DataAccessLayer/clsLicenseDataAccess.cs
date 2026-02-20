@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
-
     public class clsLicenseDataAccess
     {
         public static bool GetLicenseInfoByID(int LicenseID, ref int ApplicationID, ref int DriverID, ref int LicenseClass,
@@ -41,13 +36,14 @@ namespace DVLD_DataAccessLayer
                             PaidFees = Convert.ToSingle(reader["PaidFees"]);
                             IsActive = (bool)reader["IsActive"];
                             IssueReason = (byte)reader["IssueReason"];
-                            CreatedByUserID = (int)reader["DriverID"];
+                            CreatedByUserID = (int)reader["CreatedByUserID"];
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error while retrieving license information: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "GetLicenseInfoByID");
+                    return false;
                 }
             }
             return isFound;
@@ -57,12 +53,22 @@ namespace DVLD_DataAccessLayer
         {
             DataTable dt = new DataTable();
 
-            string query = @"SELECT Licenses.LicenseID, ApplicationID, LicenseClasses.ClassName, 
-                            Licenses.IssueDate, Licenses.ExpirationDate, Licenses.IsActive
-                     FROM Licenses
-                     INNER JOIN LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID
-                     WHERE DriverID = @DriverID
-                     ORDER BY IsActive DESC, ExpirationDate DESC";
+            string query = @"
+            SELECT 
+                Licenses.LicenseID, 
+                ApplicationID, 
+                LicenseClasses.ClassName, 
+                Licenses.IssueDate, 
+                Licenses.ExpirationDate, 
+                Licenses.IsActive
+            FROM 
+                Licenses
+            INNER JOIN
+                LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID
+            WHERE 
+                DriverID = @DriverID
+            ORDER BY 
+                IsActive DESC, ExpirationDate DESC";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -82,7 +88,8 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error while retrieving driver licenses: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "GetDriverLicenses");
+                    return null;
                 }
             }
             return dt;
@@ -95,10 +102,11 @@ namespace DVLD_DataAccessLayer
             int LicenseID = -1;
 
             string query = @"
-        INSERT INTO Licenses
-        (ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID)
-        VALUES (@ApplicationID, @DriverID, @LicenseClass, @IssueDate, @ExpirationDate, @Notes, @PaidFees, @IsActive, @IssueReason, @CreatedByUserID);
-        SELECT SCOPE_IDENTITY();";
+            INSERT INTO Licenses
+            (ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID)
+            VALUES 
+            (@ApplicationID, @DriverID, @LicenseClass, @IssueDate, @ExpirationDate, @Notes, @PaidFees, @IsActive, @IssueReason, @CreatedByUserID);
+            SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -125,7 +133,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error while adding new license: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "AddNewLicense");
                 }
             }
             return LicenseID;
@@ -137,13 +145,21 @@ namespace DVLD_DataAccessLayer
         {
             int rowsAffected = 0;
 
-            string query = @"UPDATE Licenses
-                     SET ApplicationID = @ApplicationID, DriverID = @DriverID,
-                         LicenseClass = @LicenseClass, IssueDate = @IssueDate,
-                         ExpirationDate = @ExpirationDate, Notes = @Notes,
-                         PaidFees = @PaidFees, IsActive = @IsActive, IssueReason = @IssueReason,
-                         CreatedByUserID = @CreatedByUserID
-                     WHERE LicenseID = @LicenseID";
+            string query = @"
+            UPDATE Licenses
+            SET 
+                ApplicationID = @ApplicationID, 
+                DriverID = @DriverID,
+                LicenseClass = @LicenseClass, 
+                IssueDate = @IssueDate,
+                ExpirationDate = @ExpirationDate, 
+                Notes = @Notes,
+                PaidFees = @PaidFees, 
+                IsActive = @IsActive, 
+                IssueReason = @IssueReason,
+                CreatedByUserID = @CreatedByUserID
+            WHERE 
+                LicenseID = @LicenseID";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -167,7 +183,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error while updating license: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "UpdateLicense");
                 }
             }
             return rowsAffected > 0;
@@ -194,7 +210,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error while retrieving all licenses: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "GetAllLicenses");
                 }
             }
             return dt;
@@ -218,8 +234,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle or log the exception as needed
-                    throw new Exception("Error checking if License exists", ex);
+                    clsHandleExceptions.LogException(ex, "IsLicenseExists");
                 }
             }
 
@@ -230,9 +245,10 @@ namespace DVLD_DataAccessLayer
         {
             int rowsAffected = 0;
 
-            string query = @"UPDATE Licenses
-                     SET IsActive = 0
-                     WHERE LicenseID = @LicenseID";
+            string query = @"
+            UPDATE Licenses
+            SET IsActive = 0
+            WHERE LicenseID = @LicenseID";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -246,13 +262,12 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log or handle exception
+                    clsHandleExceptions.LogException( ex, "DeactivateLicense");
                     return false;
                 }
             }
 
             return rowsAffected > 0;
         }
-
     }
 }

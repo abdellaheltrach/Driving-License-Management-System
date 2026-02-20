@@ -177,8 +177,8 @@ namespace DVLD_BusinessLayer
 
             if (IsFound)
 
-                return new clsPerson(PersonID, FirstName, SecondName, ThirdName, LastName,
-                          NationalNo, DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
+                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName,
+                          DateOfBirth, Gendor, Address, Phone, Email, NationalityCountryID, ImagePath);
             else
                 return null;
         }

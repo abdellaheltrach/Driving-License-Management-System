@@ -5,17 +5,9 @@ using DVLD.Applications.Renew_Licence_Application;
 using DVLD.Applications.ReplaceLostOrDamagedLicense;
 using DVLD.Applications.Rlease_Detained_License;
 using DVLD.Licenses.Detain_License;
-using DVLD.Login;
 using DVLD.test_types;
 using DVLD.Users;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -49,7 +41,7 @@ namespace DVLD
 
             // Close this form (main form)
             this.Close();
-  
+
 
         }
 
@@ -59,8 +51,8 @@ namespace DVLD
             {
                 frmUserInfo.ShowDialog();
             }
-                
-        
+
+
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -103,10 +95,10 @@ namespace DVLD
         private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (frmLocalDrivingLicenseApplication frm = new frmLocalDrivingLicenseApplication())
-            { 
+            {
                 frm.ShowDialog();
-            
-            
+
+
             }
         }
 
@@ -168,7 +160,7 @@ namespace DVLD
 
         private void manageDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using ( frmListDetainedLicenses frm = new frmListDetainedLicenses())
+            using (frmListDetainedLicenses frm = new frmListDetainedLicenses())
             {
                 frm.ShowDialog();
 
@@ -204,6 +196,11 @@ namespace DVLD
 
 
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

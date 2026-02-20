@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
     public class clsInternationalLicenseDataAccess
     {
         public static bool GetInternationalLicenseInfoByID(int InternationalLicenseID,
-    ref int ApplicationID, ref int DriverID, ref int IssuedUsingLocalLicenseID,
-    ref DateTime IssueDate, ref DateTime ExpirationDate, ref bool IsActive, ref int CreatedByUserID)
+            ref int ApplicationID, ref int DriverID, ref int IssuedUsingLocalLicenseID,
+            ref DateTime IssueDate, ref DateTime ExpirationDate, ref bool IsActive, ref int CreatedByUserID)
         {
             bool isFound = false;
 
@@ -43,8 +39,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
-                    isFound = false;
+                    clsHandleExceptions.LogException(ex, nameof(GetInternationalLicenseInfoByID));
                 }
             }
 
@@ -55,10 +50,10 @@ namespace DVLD_DataAccessLayer
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT InternationalLicenseID, ApplicationID, DriverID,
-               IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
-        FROM InternationalLicenses 
-        ORDER BY IsActive, ExpirationDate DESC";
+                SELECT InternationalLicenseID, ApplicationID, DriverID,
+                       IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
+                FROM InternationalLicenses 
+                ORDER BY IsActive, ExpirationDate DESC";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -76,7 +71,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
+                    clsHandleExceptions.LogException(ex, nameof(GetAllInternationalLicenses));
                 }
             }
 
@@ -87,10 +82,10 @@ namespace DVLD_DataAccessLayer
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT InternationalLicenseID, ApplicationID,
-               IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
-        FROM InternationalLicenses WHERE DriverID = @DriverID
-        ORDER BY ExpirationDate DESC";
+                SELECT InternationalLicenseID, ApplicationID,
+                       IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive
+                FROM InternationalLicenses WHERE DriverID = @DriverID
+                ORDER BY ExpirationDate DESC";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -110,7 +105,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
+                    clsHandleExceptions.LogException(ex, nameof(GetDriverInternationalLicenses));
                 }
             }
 
@@ -124,15 +119,15 @@ namespace DVLD_DataAccessLayer
             int InternationalLicenseID = -1;
 
             string query = @"
-        UPDATE InternationalLicenses 
-        SET IsActive = 0
-        WHERE DriverID = @DriverID;
+                UPDATE InternationalLicenses 
+                SET IsActive = 0
+                WHERE DriverID = @DriverID;
 
-        INSERT INTO InternationalLicenses
-        (ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID)
-        VALUES (@ApplicationID, @DriverID, @IssuedUsingLocalLicenseID, @IssueDate, @ExpirationDate, @IsActive, @CreatedByUserID);
-        
-        SELECT SCOPE_IDENTITY();";
+                INSERT INTO InternationalLicenses
+                (ApplicationID, DriverID, IssuedUsingLocalLicenseID, IssueDate, ExpirationDate, IsActive, CreatedByUserID)
+                VALUES (@ApplicationID, @DriverID, @IssuedUsingLocalLicenseID, @IssueDate, @ExpirationDate, @IsActive, @CreatedByUserID);
+                
+                SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -157,7 +152,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
+                    clsHandleExceptions.LogException(ex, nameof(AddNewInternationalLicense));
                 }
             }
 
@@ -171,15 +166,15 @@ namespace DVLD_DataAccessLayer
             int rowsAffected = 0;
 
             string query = @"
-        UPDATE InternationalLicenses
-        SET ApplicationID = @ApplicationID,
-            DriverID = @DriverID,
-            IssuedUsingLocalLicenseID = @IssuedUsingLocalLicenseID,
-            IssueDate = @IssueDate,
-            ExpirationDate = @ExpirationDate,
-            IsActive = @IsActive,
-            CreatedByUserID = @CreatedByUserID
-        WHERE InternationalLicenseID = @InternationalLicenseID";
+                UPDATE InternationalLicenses
+                SET ApplicationID = @ApplicationID,
+                    DriverID = @DriverID,
+                    IssuedUsingLocalLicenseID = @IssuedUsingLocalLicenseID,
+                    IssueDate = @IssueDate,
+                    ExpirationDate = @ExpirationDate,
+                    IsActive = @IsActive,
+                    CreatedByUserID = @CreatedByUserID
+                WHERE InternationalLicenseID = @InternationalLicenseID";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -200,7 +195,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    return false;
+                    clsHandleExceptions.LogException(ex, nameof(UpdateInternationalLicense));
                 }
             }
 
@@ -212,10 +207,10 @@ namespace DVLD_DataAccessLayer
             int InternationalLicenseID = -1;
 
             string query = @"
-        SELECT TOP 1 InternationalLicenseID
-        FROM InternationalLicenses
-        WHERE DriverID = @DriverID AND GETDATE() BETWEEN IssueDate AND ExpirationDate
-        ORDER BY ExpirationDate DESC";
+                SELECT TOP 1 InternationalLicenseID
+                FROM InternationalLicenses
+                WHERE DriverID = @DriverID AND GETDATE() BETWEEN IssueDate AND ExpirationDate
+                ORDER BY ExpirationDate DESC";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -234,12 +229,11 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
+                    clsHandleExceptions.LogException(ex, nameof(GetActiveInternationalLicenseIDByDriverID));
                 }
             }
 
             return InternationalLicenseID;
         }
-
     }
 }

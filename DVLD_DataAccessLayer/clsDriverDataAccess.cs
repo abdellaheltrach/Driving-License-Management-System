@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace DVLD_DataAccessLayer
 {
@@ -37,10 +33,11 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log the error
+                    clsHandleExceptions.LogException( ex,nameof(GetDriverInfoByDriverID));
                     isFound = false;
                 }
             }
+
             return isFound;
         }
 
@@ -71,10 +68,11 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log the error
+                    clsHandleExceptions.LogException(ex, nameof(GetDriverInfoByPersonID));
                     isFound = false;
                 }
             }
+
             return isFound;
         }
 
@@ -100,9 +98,10 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log the error
+                    clsHandleExceptions.LogException(ex, nameof(GetAllDrivers));
                 }
             }
+
             return dt;
         }
 
@@ -111,8 +110,8 @@ namespace DVLD_DataAccessLayer
             int DriverID = -1;
 
             string query = @"INSERT INTO Drivers (PersonID, CreatedByUserID, CreatedDate)
-                     VALUES (@PersonID, @CreatedByUserID, @CreatedDate);
-                     SELECT SCOPE_IDENTITY();";
+                             VALUES (@PersonID, @CreatedByUserID, @CreatedDate);
+                             SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -132,9 +131,10 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log the error
+                    clsHandleExceptions.LogException(ex, nameof(AddNewDriver));
                 }
             }
+
             return DriverID;
         }
 
@@ -143,9 +143,9 @@ namespace DVLD_DataAccessLayer
             int rowsAffected = 0;
 
             string query = @"UPDATE Drivers  
-                     SET PersonID = @PersonID,
-                         CreatedByUserID = @CreatedByUserID
-                     WHERE DriverID = @DriverID";
+                             SET PersonID = @PersonID,
+                                 CreatedByUserID = @CreatedByUserID
+                             WHERE DriverID = @DriverID";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -161,12 +161,12 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log the error
+                    clsHandleExceptions.LogException(ex, nameof(UpdateDriver));
                     return false;
                 }
             }
+
             return (rowsAffected > 0);
         }
-
     }
 }

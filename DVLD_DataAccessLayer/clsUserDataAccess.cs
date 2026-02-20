@@ -25,13 +25,12 @@ namespace DVLD_DataAccessLayer
                 try
                 {
                     connection.Open();
-                    // Get the newly inserted UserID
                     int userId = (int)command.ExecuteScalar();
                     return userId; // Return the newly created UserID
                 }
                 catch (Exception ex)
                 {
-                    // Handle error (optional: log or show message)
+                    clsHandleExceptions.LogException(ex, "Error while adding user", "AddUser");
                     return -1; // Return -1 to indicate failure
                 }
             }
@@ -39,10 +38,8 @@ namespace DVLD_DataAccessLayer
 
         public static bool UpdateUser(int userId, string userName, string password, bool isActive)
         {
-            // SQL query to update user details based on UserID
             string query = "UPDATE Users SET UserName = @UserName, Password = @Password, IsActive = @IsActive WHERE UserID = @UserID";
 
-            // Create a connection and command
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -53,17 +50,13 @@ namespace DVLD_DataAccessLayer
 
                 try
                 {
-                    // Open connection and execute the command
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
-
-                    // Return true if at least one row was updated
                     return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
-                    // Log or handle exception
-                    // throw new Exception("An error occurred while updating user: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "Error while updating user", "UpdateUser");
                     return false;
                 }
             }
@@ -78,19 +71,19 @@ namespace DVLD_DataAccessLayer
                 command.Parameters.AddWithValue("@UserName", username);
                 command.Parameters.AddWithValue("@Password", password);
 
-                connection.Open();
-                object result = command.ExecuteScalar();
-
-                //  query = query + " ";
-
-                if (result != null && int.TryParse(result.ToString(), out int UserID) && UserID != -1)
+                try
                 {
-                    return UserID;
-
-
-
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null && int.TryParse(result.ToString(), out int UserID) && UserID != -1)
+                    {
+                        return UserID;
+                    }
                 }
-
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while verifying user credentials", "VerifyUserCredentials");
+                }
                 return -1;
             }
         }
@@ -103,19 +96,23 @@ namespace DVLD_DataAccessLayer
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@UserID", userId);
 
-                connection.Open();
-                object result = command.ExecuteScalar();
-                return result != null && Convert.ToBoolean(result);
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    return result != null && Convert.ToBoolean(result);
+                }
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while checking user activity", "IsUserActive");
+                    return false;
+                }
             }
         }
 
         public static bool FindUserById(int userId, ref int personId, ref string userName, ref string password, ref bool isActive)
         {
-            bool isFound = false;  // Variable to track if the user is found
-
-            // SQL query to find the user by UserID
             string query = "SELECT PersonID, UserName, Password, IsActive FROM Users WHERE UserID = @UserID";
-
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -124,100 +121,74 @@ namespace DVLD_DataAccessLayer
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read()) // Check if user exists
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Update ref parameters with values from the database
-                        personId = reader.GetInt32(reader.GetOrdinal("PersonID"));
-                        userName = reader.GetString(reader.GetOrdinal("UserName"));
-                        password = reader.GetString(reader.GetOrdinal("Password"));
-                        isActive = reader.GetBoolean(reader.GetOrdinal("IsActive"));
-                        isFound = true; // Mark as found
+                        if (reader.Read())
+                        {
+                            personId = reader.GetInt32(reader.GetOrdinal("PersonID"));
+                            userName = reader.GetString(reader.GetOrdinal("UserName"));
+                            password = reader.GetString(reader.GetOrdinal("Password"));
+                            isActive = reader.GetBoolean(reader.GetOrdinal("IsActive"));
+                            return true;
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions (optional: log or display error message)
-                    Console.WriteLine("Error: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close(); // Ensure the connection is closed
+                    clsHandleExceptions.LogException(ex, "Error while finding user by ID", "FindUserById");
                 }
             }
-
-            return isFound; // Return whether the user was found or not
+            return false;
         }
 
         public static bool IsPasswordMatch(int userId, string password)
         {
-            bool isMatch = false;
-
             string query = "SELECT COUNT(1) FROM Users WHERE UserID = @UserID AND Password = @Password";
-
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userId);
+                command.Parameters.AddWithValue("@Password", password);
+
+                try
                 {
-                    // Use parameterized queries to prevent SQL injection
-                    command.Parameters.AddWithValue("@UserID", userId);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    try
-                    {
-                        connection.Open();
-                        int count = (int)command.ExecuteScalar();
-
-                        // Check if a match was found (count should be 1 if userId/password match)
-                        isMatch = count == 1;
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count == 1;
+                }
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while checking password match", "IsPasswordMatch");
+                    return false;
                 }
             }
-
-            return isMatch;
         }
 
         public static bool ChangePassword(int userId, string newPassword)
         {
-            bool isPasswordChanged = false;
-
             string query = "UPDATE Users SET Password = @NewPassword WHERE UserID = @UserID";
-
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userId);
+                command.Parameters.AddWithValue("@NewPassword", newPassword);
+
+                try
                 {
-                    // Use parameterized queries to prevent SQL injection
-                    command.Parameters.AddWithValue("@UserID", userId);
-                    command.Parameters.AddWithValue("@NewPassword", newPassword);
-
-                    try
-                    {
-                        connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        // Check if a row was updated
-                        isPasswordChanged = rowsAffected > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle exceptions (e.g., log them)
-                        Console.WriteLine($"An error occurred: {ex.Message}");
-                    }
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while changing password", "ChangePassword");
+                    return false;
                 }
             }
-
-            return isPasswordChanged;
         }
 
         public static DataTable GetAllUsers()
         {
-            // Updated query with concatenation for full name
             string query = @"
             SELECT 
                 Users.UserID, 
@@ -231,55 +202,45 @@ namespace DVLD_DataAccessLayer
                 Users ON People.PersonID = Users.PersonID";
 
             DataTable usersTable = new DataTable();
-
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                SqlCommand command = new SqlCommand(query, connection);
+                try
                 {
-                    try
+                    connection.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
-                        connection.Open();
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(usersTable); // Fill the DataTable with query results
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log the exception or handle it as needed
-                        Console.WriteLine($"An error occurred: {ex.Message}");
+                        adapter.Fill(usersTable); // Fill the DataTable with query results
                     }
                 }
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while retrieving all users", "GetAllUsers");
+                }
             }
-
             return usersTable;
         }
 
         public static bool DeleteUser(int userId)
         {
             string query = "DELETE FROM Users WHERE UserID = @UserID";
-            bool isDeleted = false;
-
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@UserID", userId);
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userId);
 
-                    try
-                    {
-                        connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();
-                        isDeleted = rowsAffected > 0; // True if deletion was successful
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log the exception or handle it as needed
-                    }
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    clsHandleExceptions.LogException(ex, "Error while deleting user", "DeleteUser");
+                    return false;
                 }
             }
-
-            return isDeleted;
         }
 
         public static bool IsUserExistsById(int PersonId)
@@ -293,17 +254,17 @@ namespace DVLD_DataAccessLayer
                 try
                 {
                     connection.Open();
-                    int result = Convert.ToInt32(command.ExecuteScalar()); // Execute the query and return 1 if exists, 0 if not
-                    return result > 0; // User exists if result is greater than 0
+                    int result = Convert.ToInt32(command.ExecuteScalar());
+                    return result > 0;
                 }
                 catch (Exception ex)
                 {
-                    // Log or handle exception
-                    //throw new Exception("An error occurred while checking if user exists: " + ex.Message);
+                    clsHandleExceptions.LogException(ex, "Error while checking if user exists by ID", "IsUserExistsById");
                     return false;
                 }
             }
         }
+
         public static bool IsUserExistsByUsername(string userName)
         {
             string query = "SELECT COUNT(1) FROM Users WHERE UserName = @UserName";
@@ -316,19 +277,14 @@ namespace DVLD_DataAccessLayer
                 {
                     connection.Open();
                     int result = Convert.ToInt32(command.ExecuteScalar());
-                    return result > 0; // User exists if result is greater than 0
+                    return result > 0;
                 }
                 catch (Exception ex)
                 {
-                    // Log or handle exception
-                    //throw new Exception("An error occurred while checking if user exists: " + ex.Message);
-                
+                    clsHandleExceptions.LogException(ex, "Error while checking if user exists by username", "IsUserExistsByUsername");
                     return false;
                 }
             }
         }
-
     }
-
 }
-

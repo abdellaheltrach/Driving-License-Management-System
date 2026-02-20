@@ -41,7 +41,7 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log error (if needed)
+                    clsHandleExceptions.LogException(ex, "Error while finding TestType by ID", "FindTestTypeById");
                     return false;
                 }
             }
@@ -51,9 +51,8 @@ namespace DVLD_DataAccessLayer
         {
             int TestTypeID = -1;
 
-            string query = @"Insert Into TestTypes (TestTypeTitle,TestTypeTitle,TestTypeFees)
-                            Values (@TestTypeTitle,@TestTypeDescription,@ApplicationFees)
-                            where TestTypeID = @TestTypeID;
+            string query = @"Insert Into TestTypes (TestTypeTitle, TestTypeDescription, TestTypeFees)
+                            Values (@TestTypeTitle, @TestTypeDescription, @ApplicationFees);
                             SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
@@ -66,6 +65,7 @@ namespace DVLD_DataAccessLayer
 
                 try
                 {
+                    connection.Open();
                     object result = command.ExecuteScalar();
 
                     if (result != null && int.TryParse(result.ToString(), out int insertedID))
@@ -75,11 +75,10 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log error if needed
+                    clsHandleExceptions.LogException(ex, "Error while adding new TestType", "AddNewTestType");
                 }
-                return TestTypeID;
-
             }
+            return TestTypeID;
         }
 
         public static DataTable GetAllTestTypes()
@@ -100,22 +99,20 @@ namespace DVLD_DataAccessLayer
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    // Load the data from the reader into the DataTable
-                    testTypesTable.Load(reader);
-
-                    reader.Close(); // Close the reader when done
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Load the data from the reader into the DataTable
+                        testTypesTable.Load(reader);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    // Log error (if needed)
+                    clsHandleExceptions.LogException(ex, "Error while retrieving all test types", "GetAllTestTypes");
                     throw new Exception("An error occurred while retrieving test types: " + ex.Message);
                 }
 
                 return testTypesTable;
             }
-
         }
 
         public static bool UpdateTestType(int testTypeId, string newTitle, int newFees, string newDescription)
@@ -144,12 +141,10 @@ namespace DVLD_DataAccessLayer
                 }
                 catch (Exception ex)
                 {
-                    // Log error (if needed)
+                    clsHandleExceptions.LogException(ex, "Error while updating TestType", "UpdateTestType");
                     return false;
                 }
             }
         }
-
-
     }
 }
